@@ -1,1 +1,1 @@
-export const example = 'Hello World'
+console.log('Hello World')
