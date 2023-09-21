@@ -102,8 +102,6 @@ describe('API', () => {
   test('should handle pagination query parameters correctly', async () => {
     server.use(
       request.get('https://api.malga.io/v1/charges', (req, res, ctx) => {
-        console.log(req.url)
-
         const page = Number(req.url.searchParams.get('page')) === 2
         const limit = Number(req.url.searchParams.get('limit')) === 15
         const response = { status: page && limit ? 'ok' : 'error' }
