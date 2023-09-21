@@ -1,13 +1,15 @@
-import axios, { AxiosError, AxiosInstance } from 'axios'
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { MalgaConfigurations } from '../malga.types'
+import { MalgaConfigurations, MalgaErrorResponse } from '../malga.types'
+
+import { ApiPaginateParamsBase } from './api.types'
 
 export class Api {
   private static TEN_SECONDS_RETRY_DELAY = 10 * 1000
   private readonly api: AxiosInstance
 
-  constructor(readonly configurations: MalgaConfigurations) {
+  constructor(private readonly configurations: MalgaConfigurations) {
     this.api = axios.create({
       baseURL: this.getBaseUrl(),
       headers: {
@@ -55,29 +57,111 @@ export class Api {
     return false
   }
 
-  public async get(path: string) {
-    return this.api.get(path)
+  private handlePaginateParams<Params>(params?: Params) {
+    if (!params) return ''
+
+    const parsedParams = Object.entries(params)
+    const transformParams = parsedParams.reduce((acc, [key, value]) => {
+      if (!value) return acc
+
+      const currentParam = `${key}=${value}`
+
+      return !acc ? currentParam : `${acc}&${currentParam}`
+    }, '')
+
+    return `?${transformParams}`
   }
 
-  public async post<Data>(path: string, data: Data, idempotencyKey?: string) {
+  private handleSuccess(response: AxiosResponse) {
+    return response.data
+  }
+
+  private handleError(error: AxiosError<any>): Promise<MalgaErrorResponse> {
+    if (!error.response?.data || error.response.status >= 500) {
+      return Promise.reject({
+        error: {
+          type: 'api_error',
+          code: 500,
+          message: 'unexpected error',
+        },
+      })
+    }
+
+    if (error.response.status === 403) {
+      return Promise.reject({
+        error: {
+          type: 'invalid_request_error',
+          code: 403,
+          message: 'forbidden',
+        },
+      })
+    }
+
+    if (error.response.data?.error?.type === 'card_declined') {
+      return Promise.reject({
+        error: {
+          type: error.response.data?.error.type,
+          code: error.response.data?.error.code,
+          message: error.response.data?.error.message,
+          declinedCode: error.response.data?.error.declined_code,
+        },
+      })
+    }
+
+    return Promise.reject(error.response.data)
+  }
+
+  public async get(path: string) {
+    return this.api.get(path).then(this.handleSuccess).catch(this.handleError)
+  }
+
+  public async post<Payload>(
+    path: string,
+    payload: Payload,
+    idempotencyKey?: string,
+  ) {
     const headers: Record<string, string> = {}
 
     if (idempotencyKey) {
       headers['X-Idempotency-Key'] = idempotencyKey
     }
 
-    return this.api.post(path, data, { headers })
+    return this.api
+      .post(path, payload, { headers })
+      .then(this.handleSuccess)
+      .catch(this.handleError)
   }
 
   public async delete(path: string) {
-    return this.api.delete(path)
+    return this.api
+      .delete(path)
+      .then(this.handleSuccess)
+      .catch(this.handleError)
   }
 
-  public async patch<Data>(path: string, data: Data) {
-    return this.api.patch(path, data)
+  public async patch<Payload>(path: string, payload: Payload) {
+    return this.api
+      .patch(path, payload)
+      .then(this.handleSuccess)
+      .catch(this.handleError)
   }
 
-  public async put<Data>(path: string, data: Data) {
-    return this.api.put(path, data)
+  public async put<Payload>(path: string, payload: Payload) {
+    return this.api
+      .put(path, payload)
+      .then(this.handleSuccess)
+      .catch(this.handleError)
+  }
+
+  public async paginate<Params = ApiPaginateParamsBase>(
+    path: string,
+    params?: Params,
+  ) {
+    const paginateParams = this.handlePaginateParams<Params>(params)
+
+    return this.api
+      .get(`${path}${paginateParams}`)
+      .then(this.handleSuccess)
+      .catch(this.handleError)
   }
 }
