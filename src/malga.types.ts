@@ -53,3 +53,16 @@ export enum MalgaPaginateSort {
   ASC = 'ASC',
   DESC = 'DESC',
 }
+
+export enum MalgaAuthScope {
+  Customers = 'customers',
+  Cards = 'cards',
+  Tokens = 'tokens',
+  Charges = 'charges',
+  Webhooks = 'webhooks',
+  Sessions = 'sessions',
+  Auth = 'auth',
+  Reports = 'reports',
+  Flows = 'flows',
+  Sellers = 'sellers',
+}
