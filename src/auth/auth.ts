@@ -26,7 +26,7 @@ export class Auth {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.auth.createPublicKey({
+   * const { publicKey } = await malga.auth.createPublicKey({
    *   scope: ['tokens', 'cards'],
    *   expires: 600, // in seconds
    * })

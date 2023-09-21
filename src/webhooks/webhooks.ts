@@ -22,7 +22,7 @@ export class Webhooks {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.webhooks.verify({
+   * const verified = malga.webhooks.verify({
    *   payload: '{"event":"ping","payload":{"object":{}}}',
    *   publicKey: '-----BEGIN PUBLIC KEY-----\nMCwBQYDK2VwAyEASdad=\n-----END PUBLIC KEY-----\n',
    *   signature: '5b20c43cfd55f0c1884196'
