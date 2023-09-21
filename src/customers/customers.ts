@@ -30,7 +30,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.create({
+   * const customer = await malga.customers.create({
    *   name: 'Homer Simpson',
    *   email: 'homer@simpsons.com',
    *   phoneNumber: '99999999999',
@@ -76,7 +76,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
+   * const customer = await malga.customers.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
   public async find(id: string): Promise<Customer> {
@@ -100,7 +100,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.list({ page: 1, limit: 15 })
+   * const customers = await malga.customers.list({ page: 1, limit: 15 })
    * ```
    */
   public async list(
@@ -135,10 +135,10 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.update('575f9a3c-6e40-4077-852e-c6781dc3c7c7', {
-   *   name: 'Bart Simpson',
-   *   phoneNumber: '99999999998',
-   * })
+   * const customer = await malga.customers.update(
+   *  '575f9a3c-6e40-4077-852e-c6781dc3c7c7',
+   *  { name: 'Bart Simpson', phoneNumber: '99999999998' }
+   * )
    * ```
    */
   public async update(
@@ -165,7 +165,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.remove('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
+   * await malga.customers.remove('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
    * ```
    */
   public async remove(id: string): Promise<void> {
@@ -189,7 +189,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.cards('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
+   * const customerCards = await malga.customers.cards('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
    * ```
    */
   public async cards(id: string): Promise<CustomerCardsResponse[]> {
@@ -214,7 +214,7 @@ export class Customers {
    *   clientId: 'CLIENT_ID',
    * })
    *
-   * malga.customers.linkCard('575f9a3c-6e40-4077-852e-c6781dc3c7c7', {
+   * await malga.customers.linkCard('575f9a3c-6e40-4077-852e-c6781dc3c7c7', {
    *   cardId: '13c2a9c0-9936-4024-b8a8-1952dbdc5460'
    * })
    * ```
