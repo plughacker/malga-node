@@ -132,9 +132,9 @@ export class Api {
       .catch(this.handleError)
   }
 
-  public async delete(path: string) {
+  public async delete<Payload>(path: string, payload?: Payload) {
     return this.api
-      .delete(path)
+      .delete(path, { data: payload })
       .then(this.handleSuccess)
       .catch(this.handleError)
   }
