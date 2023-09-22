@@ -1,25 +1,5 @@
 import { ApiPaginateParamsBase } from 'src/api'
-
-export interface Customer {
-  name: string
-  email: string
-  phoneNumber: string
-  document: {
-    type: string
-    number: string
-    country?: string
-  }
-  address?: {
-    street: string
-    streetNumber: string
-    zipCode: string
-    country: string
-    state: string
-    city: string
-    district: string
-    complement?: string
-  }
-}
+import { Customer } from 'src/interfaces/customer'
 
 export type CustomerUpdatePayload = Omit<Customer, 'document' | 'email'>
 

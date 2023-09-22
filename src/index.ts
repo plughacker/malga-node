@@ -1,6 +1,7 @@
 export { Malga } from './malga'
 export type {
-  MalgaPaginateSort,
   MalgaAuthScope,
+  MalgaChargeStatus,
   MalgaErrorResponse,
+  MalgaPaginateSort,
 } from './malga.types'

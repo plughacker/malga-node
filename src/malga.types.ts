@@ -66,3 +66,16 @@ export enum MalgaAuthScope {
   Flows = 'flows',
   Sellers = 'sellers',
 }
+
+export enum MalgaChargeStatus {
+  Pending = 'pending',
+  PreAuthorized = 'pre_authorized',
+  Authorized = 'authorized',
+  Failed = 'failed',
+  Canceled = 'canceled',
+  Voided = 'voided',
+  ChargedBack = 'charged_back',
+  CapturePending = 'capture_pending',
+  RefundPending = 'refund_pending',
+  Created = 'created',
+}

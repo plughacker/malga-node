@@ -1,7 +1,7 @@
 import { Api, ApiPostOptions, ApiPaginateResponse } from 'src/api'
+import { Customer } from 'src/interfaces/customer'
 
 import {
-  Customer,
   CustomerUpdatePayload,
   CustomerUpdateResponse,
   CustomerListParams,
