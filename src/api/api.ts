@@ -117,7 +117,7 @@ export class Api {
 
   public async post<Payload>(
     path: string,
-    payload: Payload,
+    payload?: Payload,
     idempotencyKey?: string,
   ) {
     const headers: Record<string, string> = {}

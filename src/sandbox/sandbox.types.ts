@@ -19,7 +19,7 @@ export type GenerateCardStatus =
   | 'authorized'
   | 'unauthorized'
   | 'blocked_card'
-  | 'cancelled_card'
+  | 'canceled_card'
   | 'expired_card'
   | 'invalid_cvv'
   | 'timeout'

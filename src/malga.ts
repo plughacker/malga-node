@@ -2,6 +2,7 @@ import { Api } from './api'
 import { Auth } from './auth'
 import { Customers } from './customers'
 import { Sellers } from './sellers'
+import { Sessions } from './sessions'
 import { Webhooks } from './webhooks'
 
 import { MalgaConfigurations } from './malga.types'
@@ -12,6 +13,7 @@ export class Malga {
   readonly customers: Customers
   readonly sandbox: Sandbox
   readonly sellers: Sellers
+  readonly sessions: Sessions
   readonly webhooks: Webhooks
 
   constructor(configurations: MalgaConfigurations) {
@@ -20,6 +22,7 @@ export class Malga {
     this.customers = new Customers(api)
     this.sandbox = new Sandbox(api, !!configurations.options?.sandbox)
     this.sellers = new Sellers(api)
+    this.sessions = new Sessions(api)
     this.webhooks = new Webhooks()
   }
 }
