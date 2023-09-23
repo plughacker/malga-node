@@ -138,7 +138,7 @@ describe('Sessions', () => {
   })
 
   test('should generate an error when find for a non-existent session', async () => {
-    const sellerId = '802968b0-a173-4ee3-8016-a38453d02f00'
+    const sessionId = '802968b0-a173-4ee3-8016-a38453d02f00'
 
     const error = {
       error: {
@@ -150,7 +150,7 @@ describe('Sessions', () => {
 
     server.use(
       request.get(
-        `https://api.malga.io/v1/sessions/${sellerId}`,
+        `https://api.malga.io/v1/sessions/${sessionId}`,
         (_, res, ctx) => {
           return res(ctx.status(404), ctx.json(error))
         },
@@ -160,7 +160,7 @@ describe('Sessions', () => {
     const sessions = new Sessions(api)
 
     try {
-      await sessions.find(sellerId)
+      await sessions.find(sessionId)
     } catch (err) {
       expect(err).toMatchObject(error)
     }
