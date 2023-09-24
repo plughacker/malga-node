@@ -276,6 +276,26 @@ describe('Cards', () => {
     expect(response).toMatchObject(tokenizationResponse)
   })
 
+  test('should successfully validate the CVV tokenization body', async () => {
+    server.use(
+      request.post('https://api.malga.io/v1/tokens', async (req, res, ctx) => {
+        const body = await req.json()
+
+        return res(
+          ctx.status(200),
+          ctx.json({ status: !!body.cvvUpdate ? 'ok' : 'error' }),
+        )
+      }),
+    )
+
+    const cards = new Cards(api)
+    const response = await cards.tokenization({
+      cvv: '893',
+    })
+
+    expect(response).toMatchObject({ status: 'ok' })
+  })
+
   test('should result in an error when tokenizing a CVV', async () => {
     const responseError = {
       error: {
