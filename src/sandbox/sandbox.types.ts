@@ -1,4 +1,4 @@
-import { ChargeStatus } from 'src/interfaces/charges'
+import { ChargeStatus } from 'src/common/interfaces/charges'
 
 export interface SandboxChangeChargeStatusPayload {
   status: ChargeStatus

@@ -1,5 +1,5 @@
-import { ApiPaginateParamsBase } from 'src/api'
-import { Session } from 'src/interfaces/sessions'
+import { ApiPaginateParamsBase } from 'src/common/api'
+import { Session } from 'src/common/interfaces/sessions'
 
 type SessionStatus = 'created' | 'paid' | 'canceled' | 'voided'
 

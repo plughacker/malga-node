@@ -1,5 +1,5 @@
-import { Api, ApiPostOptions, ApiPaginateResponse } from 'src/api'
-import { Customer } from 'src/interfaces/customer'
+import { Api, ApiPostOptions, ApiPaginateResponse } from 'src/common/api'
+import { Customer } from 'src/common/interfaces/customer'
 
 import {
   CustomerUpdatePayload,

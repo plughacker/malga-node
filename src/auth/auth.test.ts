@@ -1,6 +1,6 @@
 import { server, request } from 'tests'
 
-import { Api } from 'src/api'
+import { Api } from 'src/common/api'
 
 import { Auth } from './auth'
 

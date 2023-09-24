@@ -1,4 +1,4 @@
-import { ApiPaginateParamsBase } from 'src/api'
+import { ApiPaginateParamsBase } from 'src/common/api'
 
 type SellerStatus = 'active' | 'pending' | 'inactive'
 

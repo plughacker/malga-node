@@ -1,5 +1,5 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/api'
-import { Session } from 'src/interfaces/sessions'
+import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
+import { Session } from 'src/common/interfaces/sessions'
 
 import {
   SessionListParams,
