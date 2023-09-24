@@ -1,4 +1,4 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/api'
+import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
 
 import {
   Seller,

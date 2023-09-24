@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { MalgaConfigurations, MalgaErrorResponse } from '../malga.types'
+import { MalgaConfigurations, MalgaErrorResponse } from '../../malga.types'
 
 import { ApiPaginateParamsBase } from './api.types'
 

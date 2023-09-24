@@ -1,5 +1,5 @@
-import { ApiPaginateParamsBase } from 'src/api'
-import { Customer } from 'src/interfaces/customer'
+import { ApiPaginateParamsBase } from 'src/common/api'
+import { Customer } from 'src/common/interfaces/customer'
 
 export type CustomerUpdatePayload = Omit<Customer, 'document' | 'email'>
 

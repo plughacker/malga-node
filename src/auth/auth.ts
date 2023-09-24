@@ -1,4 +1,4 @@
-import { Api, ApiPostOptions } from 'src/api'
+import { Api, ApiPostOptions } from 'src/common/api'
 
 import {
   AuthCreatePublicKeyPayload,

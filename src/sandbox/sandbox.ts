@@ -1,5 +1,5 @@
-import { Api } from 'src/api'
-import { Charge } from 'src/interfaces/charges'
+import { Api } from 'src/common/api'
+import { Charge } from 'src/common/interfaces/charges'
 
 import {
   SandboxChangeChargeStatusPayload,
