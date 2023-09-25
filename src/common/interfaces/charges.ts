@@ -12,6 +12,41 @@ export type ChargeStatus =
   | 'refund_pending'
   | 'created'
 
+export type ChargePaymentType =
+  | 'pix'
+  | 'credit'
+  | 'boleto'
+  | 'voucher'
+  | 'nupay'
+  | 'drip'
+
+export type ChargeProvider =
+  | 'PAGARME'
+  | 'PAGSEGURO'
+  | 'PAGSEGURO_PIX'
+  | 'BS2'
+  | 'BS2_BOLETO'
+  | 'BB'
+  | 'CIELO'
+  | 'GERENCIA_NET'
+  | 'ZOOP'
+  | 'STRIPE'
+  | 'REDE'
+  | 'MERCADO_PAGO'
+  | 'CLEARSALE'
+  | 'BRAINTREE'
+  | 'NUPAY'
+  | 'ADYEN'
+  | 'KLAP'
+  | 'GETNET'
+  | 'BRASPAG'
+  | 'SANDBOX'
+  | 'SANDBOX_ANTIFRAUD'
+  | 'WORLDPAY'
+  | 'VR'
+  | 'DRIP'
+  | 'PAGARME_V5'
+
 interface SplitRule {
   sellerId: string
   percentage: number
@@ -101,30 +136,6 @@ type ChargePaymentSource =
   | ChargePaymentSourceCustomer
   | ChargePaymentSourceCustomerOneShot
 
-type Provider =
-  | 'BS2'
-  | 'BS2_BOLETO'
-  | 'BB'
-  | 'CIELO'
-  | 'MERCADO_PAGO'
-  | 'PAGARME'
-  | 'REDE'
-  | 'PLUG_SANDBOX'
-  | 'SANDBOX'
-  | 'STRIPE'
-  | 'ZOOP'
-  | 'PAGSEGURO'
-  | 'BRAINTREE'
-  | 'CLEARSALE'
-  | 'NUPAY'
-  | 'ADYEN'
-  | 'KLAP'
-  | 'GETNET'
-  | 'BRASPAG'
-  | 'VR'
-  | 'DRIP'
-  | 'SANDBOX_ANTIFRAUD'
-
 type ChargeRequestStatus =
   | 'running'
   | 'failed'
@@ -173,7 +184,7 @@ interface ChargeTransactionRequest {
   updatedAt: string
   idempotencyKey: string
   providerId: string
-  providerType: Provider | null
+  providerType: ChargeProvider | null
   transactionId: string | null
   amount: number
   authorizationCode: string
