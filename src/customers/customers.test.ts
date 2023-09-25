@@ -203,7 +203,12 @@ describe('Customers', () => {
     )
 
     const customers = new Customers(api)
-    const response = await customers.list({ limit: 15, page: 1 })
+    const response = await customers.list({
+      limit: 15,
+      page: 1,
+      documentNumber: '99999999999',
+      documentType: 'cpf',
+    })
 
     expect(response).toMatchObject(customerList)
   })

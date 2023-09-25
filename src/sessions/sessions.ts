@@ -104,8 +104,8 @@ export class Sessions {
     const parsedParams = {
       page: params?.page,
       limit: params?.limit,
-      status: params?.status,
-      isActive: params?.isActive,
+      status: params?.status?.join(),
+      isActive: params?.isActive?.join(),
       'created.gt': params?.startDate,
       'created.lt': params?.endDate,
     }

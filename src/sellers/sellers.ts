@@ -129,7 +129,13 @@ export class Sellers {
   public async list(
     params?: SellerListParams,
   ): Promise<ApiPaginateResponse<SellerResponse>> {
-    return this.api.paginate('/sellers', params)
+    const parsedParams = {
+      ...params,
+      email: params?.email,
+      status: params?.status?.join(),
+    }
+
+    return this.api.paginate('/sellers', parsedParams)
   }
 
   /**

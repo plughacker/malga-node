@@ -213,8 +213,8 @@ describe('Sessions', () => {
     const response = await sessions.list({
       limit: 15,
       page: 1,
-      status: 'created',
-      isActive: true,
+      status: ['created'],
+      isActive: [true],
       startDate: '2023-12-26T03:00:00.000Z',
     })
 
