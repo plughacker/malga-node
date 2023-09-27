@@ -9,9 +9,7 @@ export type NuPayHandlerPayload = ChargeHandlerResponse
 
 type NuPayHandlerParsedResponse = {
   paymentMethod: ChargePaymentMethodNuPay
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type NuPayHandlerResponse = NuPayHandlerParsedResponse &

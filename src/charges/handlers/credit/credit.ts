@@ -76,13 +76,13 @@ export class CreditHandler extends BaseHandler {
         }
 
         return {
-          paymentSource: 'card',
+          sourceType: 'card',
           cardId: id,
         }
       }
 
       return {
-        paymentSource: 'token',
+        sourceType: 'token',
         tokenId,
       }
     }
@@ -102,7 +102,7 @@ export class CreditHandler extends BaseHandler {
       }
 
       return {
-        paymentSource: 'card',
+        sourceType: 'card',
         cardId: paymentMethod.cardId,
         ...tokenCvv,
         ...cardCvv,
@@ -110,7 +110,7 @@ export class CreditHandler extends BaseHandler {
     }
 
     return {
-      paymentSource: 'token',
+      sourceType: 'token',
       tokenId: paymentMethod.tokenId,
     }
   }
@@ -129,7 +129,7 @@ export class CreditHandler extends BaseHandler {
       ...rest,
       customerId: currentCustomerId,
       paymentMethod: this.parsePaymentMethod(paymentMethod),
-      paymentSource: await this.parsePaymentSource(
+      sourceType: await this.parsePaymentSource(
         paymentMethod,
         currentCustomerId,
       ),

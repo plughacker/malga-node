@@ -42,7 +42,7 @@ export class BoletoHandler extends BaseHandler {
     return super.handle({
       ...rest,
       paymentMethod: this.parsePaymentMethod(paymentMethod),
-      paymentSource: this.parsePaymentSource(customer, customerId),
+      sourceType: this.parsePaymentSource(customer, customerId),
     })
   }
 }

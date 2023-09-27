@@ -9,9 +9,7 @@ export type PixHandlerPayload = ChargeHandlerResponse
 
 type PixHandlerParsedResponse = {
   paymentMethod: ChargePaymentMethodPix
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type PixHandlerResponse = PixHandlerParsedResponse &

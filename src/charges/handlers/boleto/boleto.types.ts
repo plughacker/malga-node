@@ -9,9 +9,7 @@ export type BoletoHandlerPayload = ChargeHandlerResponse
 
 type BoletoHandlerParsedResponse = {
   paymentMethod: ChargePaymentMethodBoleto
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type BoletoHandlerResponse = BoletoHandlerParsedResponse &

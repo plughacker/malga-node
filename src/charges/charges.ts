@@ -52,13 +52,13 @@ export class Charges {
     )
 
     const sessionId = (payload as ChargeSessionCreatePayload)?.sessionId
-    return await chargeCreateBuilder.payload(payload)
+    const parsedPayload = await chargeCreateBuilder.payload(payload)
 
-    // return this.api.post(
-    //   sessionId ? `/sessions/${sessionId}/charge` : '/charges',
-    //   parsedPayload,
-    //   options?.idempotencyKey,
-    // )
+    return this.api.post(
+      sessionId ? `/sessions/${sessionId}/charge` : '/charges',
+      parsedPayload,
+      options?.idempotencyKey,
+    )
   }
 
   /**

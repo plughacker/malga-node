@@ -10,9 +10,7 @@ export type CreditHandlerPayload = ChargeHandlerResponse
 type CreditHandlerParsedResponse = {
   customerId: string
   paymentMethod: ChargePaymentMethodCredit
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type CreditHandlerResponse = CreditHandlerParsedResponse &

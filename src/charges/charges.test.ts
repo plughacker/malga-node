@@ -10,6 +10,270 @@ const customers = new Customers(api)
 const cards = new Cards(api)
 
 describe('Charges', () => {
+  test('should succeed in creating a charge', async () => {
+    const chargeResponse = {
+      id: '76ae1681-f0b1-4849-a6ef-e9c93649e6c7',
+      clientId: 'CLIENT_ID',
+      merchantId: '88ef3bbc-e629-497a-81a8-3fcc43d97a1e',
+      description: null,
+      orderId: null,
+      createdAt: '2023-09-27T18:27:02.017Z',
+      amount: 100,
+      originalAmount: 100,
+      currency: 'BRL',
+      statementDescriptor: null,
+      capture: false,
+      isDispute: false,
+      status: 'pre_authorized',
+      paymentMethod: {
+        installments: 1,
+        paymentType: 'credit',
+      },
+      paymentSource: {
+        sourceType: 'token',
+        tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2',
+      },
+      transactionRequests: [
+        {
+          id: '838380e8-9cdf-4084-a0cc-837051001119',
+          createdAt: '2023-09-27T18:27:02.077Z',
+          updatedAt: '2023-09-27T18:27:02.212Z',
+          idempotencyKey: 'e6a3d815-2929-4bba-8b3d-b3be19796f38',
+          providerId: '5819c91d-d6c0-42d5-bd14-c410bbebb6ac',
+          providerType: 'SANDBOX',
+          transactionId: 'b93a3922-1787-4940-a655-ae944253c45e',
+          amount: 100,
+          authorizationCode: '9023792',
+          authorizationNsu: '0210428',
+          requestStatus: 'success',
+          requestType: 'pre_authorization',
+          responseTs: '41ms',
+          providerAuthorization: {
+            networkAuthorizationCode: '9490770',
+            networkResponseCode: '3767930',
+          },
+        },
+      ],
+      appInfo: null,
+    }
+
+    server.use(
+      request.post('https://api.malga.io/v1/charges', (_, res, ctx) => {
+        return res(ctx.status(200), ctx.json(chargeResponse))
+      }),
+    )
+
+    server.use(
+      request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
+        )
+      }),
+    )
+
+    const charges = new Charges(api, cards, customers)
+    const response = await charges.create({
+      merchantId: '88ef3bbc-e629-497a-81a8-3fcc43d97a1e',
+      amount: 100,
+      paymentMethod: {
+        type: 'credit',
+        installments: 1,
+        card: {
+          holderName: 'Homer Simpson',
+          number: '5401177501978548',
+          cvv: '192',
+          expirationDate: '10/2024',
+        },
+      },
+    })
+
+    expect(response).toMatchObject(chargeResponse)
+  })
+
+  test('should generate an error when trying to create the charge', async () => {
+    const error = {
+      error: {
+        type: 'bad_request',
+        code: 400,
+        message: 'Bad Request Exception',
+        details: [
+          'merchantId must be a UUID',
+          'merchantId should not be empty',
+          'merchantId must be a string',
+        ],
+      },
+    }
+
+    server.use(
+      request.post('https://api.malga.io/v1/charges', (_, res, ctx) => {
+        return res(ctx.status(400), ctx.json(error))
+      }),
+    )
+
+    server.use(
+      request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({ tokenId: '5e22a2a9-afe9-49c2-950f-11751c6e5c60' }),
+        )
+      }),
+    )
+
+    const charges = new Charges(api, cards, customers)
+
+    try {
+      await charges.create({
+        amount: 100,
+        paymentMethod: {
+          type: 'credit',
+          installments: 1,
+          card: {
+            holderName: 'Homer Simpson',
+            number: '5401177501978548',
+            cvv: '192',
+            expirationDate: '10/2024',
+          },
+        },
+      })
+    } catch (err) {
+      expect(err).toMatchObject(error)
+    }
+  })
+
+  test('should succeed in creating a charge with session', async () => {
+    const sessionId = 'bdc23b4e-2270-4f10-896f-f2cb82d2b29d'
+
+    const chargeResponse = {
+      id: '76ae1681-f0b1-4849-a6ef-e9c93649e6c7',
+      clientId: 'CLIENT_ID',
+      merchantId: '88ef3bbc-e629-497a-81a8-3fcc43d97a1e',
+      description: null,
+      orderId: null,
+      createdAt: '2023-09-27T18:27:02.017Z',
+      amount: 100,
+      originalAmount: 100,
+      currency: 'BRL',
+      statementDescriptor: null,
+      capture: false,
+      isDispute: false,
+      status: 'pre_authorized',
+      paymentMethod: {
+        installments: 1,
+        paymentType: 'credit',
+      },
+      paymentSource: {
+        sourceType: 'token',
+        tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2',
+      },
+      transactionRequests: [
+        {
+          id: '838380e8-9cdf-4084-a0cc-837051001119',
+          createdAt: '2023-09-27T18:27:02.077Z',
+          updatedAt: '2023-09-27T18:27:02.212Z',
+          idempotencyKey: 'e6a3d815-2929-4bba-8b3d-b3be19796f38',
+          providerId: '5819c91d-d6c0-42d5-bd14-c410bbebb6ac',
+          providerType: 'SANDBOX',
+          transactionId: 'b93a3922-1787-4940-a655-ae944253c45e',
+          amount: 100,
+          authorizationCode: '9023792',
+          authorizationNsu: '0210428',
+          requestStatus: 'success',
+          requestType: 'pre_authorization',
+          responseTs: '41ms',
+          providerAuthorization: {
+            networkAuthorizationCode: '9490770',
+            networkResponseCode: '3767930',
+          },
+        },
+      ],
+      appInfo: null,
+    }
+
+    server.use(
+      request.post(
+        `https://api.malga.io/v1/sessions/${sessionId}/charge`,
+        (_, res, ctx) => {
+          return res(ctx.status(200), ctx.json(chargeResponse))
+        },
+      ),
+    )
+
+    server.use(
+      request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
+        )
+      }),
+    )
+
+    const charges = new Charges(api, cards, customers)
+    const response = await charges.create({
+      sessionId,
+      paymentMethod: {
+        type: 'credit',
+        installments: 1,
+        card: {
+          holderName: 'Homer Simpson',
+          number: '5401177501978548',
+          cvv: '192',
+          expirationDate: '10/2024',
+        },
+      },
+    })
+
+    expect(response).toMatchObject(chargeResponse)
+  })
+
+  test('should generate an error when trying to create the charge with session', async () => {
+    const sessionId = 'bdc23b4e-2270-4f10-896f-f2cb82d2b29d'
+
+    server.use(
+      request.post(
+        `https://api.malga.io/v1/sessions/${sessionId}/charge`,
+        (_, res, ctx) => {
+          return res(ctx.status(500))
+        },
+      ),
+    )
+
+    server.use(
+      request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({ tokenId: '5e22a2a9-afe9-49c2-950f-11751c6e5c60' }),
+        )
+      }),
+    )
+
+    const charges = new Charges(api, cards, customers)
+
+    try {
+      await charges.create({
+        sessionId,
+        paymentMethod: {
+          type: 'credit',
+          installments: 1,
+          card: {
+            holderName: 'Homer Simpson',
+            number: '5401177501978548',
+            cvv: '192',
+            expirationDate: '10/2024',
+          },
+        },
+      })
+    } catch (err) {
+      expect(err).toMatchObject({
+        error: {
+          type: 'api_error',
+          code: 500,
+          message: 'unexpected error',
+        },
+      })
+    }
+  })
+
   test('should succeed when find for a charge by ID', async () => {
     const chargeId = 'eeef63e0-3147-48de-a140-e22f4981acc5'
     const chargeResponse = {
@@ -30,7 +294,7 @@ describe('Charges', () => {
         installments: 1,
         paymentType: 'credit',
       },
-      paymentSource: {
+      sourceType: {
         sourceType: 'card',
         cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
       },
@@ -123,7 +387,7 @@ describe('Charges', () => {
             installments: 1,
             paymentType: 'credit',
           },
-          paymentSource: {
+          sourceType: {
             sourceType: 'card',
             cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
           },
@@ -233,7 +497,7 @@ describe('Charges', () => {
         installments: 1,
         paymentType: 'credit',
       },
-      paymentSource: {
+      sourceType: {
         sourceType: 'card',
         cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
       },
@@ -328,7 +592,7 @@ describe('Charges', () => {
         installments: 1,
         paymentType: 'credit',
       },
-      paymentSource: {
+      sourceType: {
         sourceType: 'card',
         cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
       },

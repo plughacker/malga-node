@@ -233,7 +233,7 @@ export interface Charge {
   capture: boolean
   status: ChargeStatus
   paymentMethod: ChargePaymentMethod
-  paymentSource: ChargePaymentSource
+  sourceType: ChargePaymentSource
   transactionRequests: ChargeTransactionRequest[]
   splitRules?: SplitRule[]
   appInfo: AppInfo | null

@@ -9,9 +9,7 @@ export type DripHandlerPayload = ChargeHandlerResponse
 
 type DripHandlerParsedResponse = {
   paymentMethod: ChargePaymentMethodDrip
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type DripHandlerResponse = DripHandlerParsedResponse &

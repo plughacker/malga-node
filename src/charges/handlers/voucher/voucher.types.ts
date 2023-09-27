@@ -10,9 +10,7 @@ export type VoucherHandlerPayload = ChargeHandlerResponse
 type VoucherHandlerParsedResponse = {
   customerId: string
   paymentMethod: ChargePaymentMethodVoucher
-  paymentSource:
-    | ChargePaymentSourceCustomer
-    | ChargePaymentSourceCustomerOneShot
+  sourceType: ChargePaymentSourceCustomer | ChargePaymentSourceCustomerOneShot
 }
 
 export type VoucherHandlerResponse = VoucherHandlerParsedResponse &
