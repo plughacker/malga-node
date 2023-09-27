@@ -29,6 +29,6 @@ export class Malga {
     this.sellers = new Sellers(api)
     this.sessions = new Sessions(api)
     this.webhooks = new Webhooks()
-    this.charges = new Charges(api)
+    this.charges = new Charges(api, this.cards, this.customers)
   }
 }

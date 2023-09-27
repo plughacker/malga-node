@@ -2,13 +2,64 @@ import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
 import { Charge } from 'src/common/interfaces/charges'
 
 import {
+  ChargeCreatePayload,
+  ChargeSessionCreatePayload,
   ChargeListParams,
   ChargeCapturePayload,
   ChargeRefundPayload,
 } from './charges.types'
+import { ChargeCreateBuilder } from './builders'
+import { Cards } from 'src/cards'
+import { Customers } from 'src/customers'
 
 export class Charges {
-  constructor(private readonly api: Api) {}
+  constructor(
+    private readonly api: Api,
+    private readonly cards: Cards,
+    private readonly customers: Customers,
+  ) {}
+
+  /**
+   * Create a charge
+   *
+   * @link https://docs.malga.io/api#operation/charge
+   *
+   * @param payload - Charge object
+   * @param options - API options like `idempotencyKey`
+   * @returns Charge API response
+   *
+   * @example
+   * ```
+   * import { Malga } from 'malga'
+   *
+   * const malga = new Malga({
+   *   apiKey: 'API_KEY',
+   *   clientId: 'CLIENT_ID',
+   * })
+   *
+   * const charge = await malga.charges.create({
+   *
+   * })
+   * ```
+   */
+  public async create(
+    payload: ChargeCreatePayload | ChargeSessionCreatePayload,
+    options?: ApiPostOptions,
+  ): Promise<any> {
+    const chargeCreateBuilder = new ChargeCreateBuilder(
+      this.cards,
+      this.customers,
+    )
+
+    const sessionId = (payload as ChargeSessionCreatePayload)?.sessionId
+    return await chargeCreateBuilder.payload(payload)
+
+    // return this.api.post(
+    //   sessionId ? `/sessions/${sessionId}/charge` : '/charges',
+    //   parsedPayload,
+    //   options?.idempotencyKey,
+    // )
+  }
 
   /**
    * Find charge details

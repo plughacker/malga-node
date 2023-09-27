@@ -2,8 +2,12 @@ import { server, request } from 'tests'
 import { Api } from 'src/common/api'
 
 import { Charges } from './charges'
+import { Customers } from 'src/customers'
+import { Cards } from 'src/cards'
 
 const api = new Api({ apiKey: 'API_KEY', clientId: 'CLIENT_ID' })
+const customers = new Customers(api)
+const cards = new Cards(api)
 
 describe('Charges', () => {
   test('should succeed when find for a charge by ID', async () => {
@@ -63,7 +67,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
     const response = await charges.find(chargeId)
 
     expect(response).toMatchObject(chargeResponse)
@@ -89,7 +93,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
 
     try {
       await charges.find(chargeId)
@@ -162,7 +166,7 @@ describe('Charges', () => {
       }),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
     const response = await charges.list({
       limit: 15,
       page: 1,
@@ -188,7 +192,7 @@ describe('Charges', () => {
       }),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
 
     try {
       await charges.list({
@@ -266,7 +270,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
     const response = await charges.capture(chargeId, {
       amount: 100,
     })
@@ -286,7 +290,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
 
     try {
       await charges.capture(chargeId, {
@@ -361,7 +365,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
     const response = await charges.refund(chargeId, {
       amount: 100,
     })
@@ -381,7 +385,7 @@ describe('Charges', () => {
       ),
     )
 
-    const charges = new Charges(api)
+    const charges = new Charges(api, cards, customers)
 
     try {
       await charges.refund(chargeId, {

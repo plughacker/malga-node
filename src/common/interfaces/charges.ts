@@ -47,12 +47,16 @@ export type ChargeProvider =
   | 'DRIP'
   | 'PAGARME_V5'
 
-interface SplitRule {
+export interface SplitRule {
   sellerId: string
-  percentage: number
-  amount: number
+  percentage?: number
+  amount?: number
   processingFee: boolean
   liable: boolean
+  fares?: {
+    mdr: number
+    fee: number
+  }
 }
 
 interface ChargePaymentMethodCard {
@@ -119,12 +123,12 @@ interface ChargePaymentSourceToken {
   tokenId: string
 }
 
-interface ChargePaymentSourceCustomer {
+export interface ChargePaymentSourceCustomer {
   sourceType: 'customer'
   customerId: string
 }
 
-interface ChargePaymentSourceCustomerOneShot {
+export interface ChargePaymentSourceCustomerOneShot {
   sourceType: 'customer'
   customer?: Customer
 }
