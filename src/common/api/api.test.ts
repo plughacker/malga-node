@@ -83,6 +83,34 @@ describe('API', () => {
     expect(response).toMatchObject({ status: 'ok' })
   })
 
+  test('should send the publicKey correctly', async () => {
+    const apiKey = 'API_KEY'
+    const clientId = 'CLIENT_ID'
+    const idempotencyKey = 'idempotencyKey'
+    const publicKey = 'PUBLIC_KEY'
+
+    server.use(
+      request.post('https://api.malga.io/v1/charges', (req, res, ctx) => {
+        const apiKeyHeader = req.headers.get('X-Api-Key') === publicKey
+        const clientIdHeader = req.headers.get('X-Client-Id') === clientId
+        const idempotencyKeyHeader =
+          req.headers.get('X-Idempotency-Key') === idempotencyKey
+        const domain = req.url.origin === 'https://api.malga.io'
+        const condition =
+          apiKeyHeader && clientIdHeader && domain && idempotencyKeyHeader
+
+        const response = { status: condition ? 'ok' : 'error' }
+
+        return res(ctx.status(200), ctx.json(response))
+      }),
+    )
+
+    const api = new Api({ apiKey, clientId })
+    const response = await api.post('/charges', {}, idempotencyKey, publicKey)
+
+    expect(response).toMatchObject({ status: 'ok' })
+  })
+
   test('should handle a request failure', async () => {
     server.use(
       request.post('https://api.malga.io/v1/charges', (_, res, ctx) =>

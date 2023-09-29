@@ -231,6 +231,7 @@ interface ChargeCommonCreatePayload {
 
 export interface ChargeSessionCreatePayload extends ChargeCommonCreatePayload {
   sessionId: string
+  publicKey: string
   appInfo?: Omit<AppInfo, 'platform'>
 }
 

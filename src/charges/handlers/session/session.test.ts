@@ -5,6 +5,7 @@ describe('SessionHandler', () => {
     const sessionHandler = new SessionHandler()
     const payload = sessionHandler.handle({
       sessionId: '935b1193-e7d1-4612-8a98-08f6e3fb1dcf',
+      publicKey: '86082c7f-f998-4beb-8771-6e7240ef8636',
       customerId: 'fa68fbab-8807-410f-ac9f-8994e566038f',
       paymentMethod: {
         type: 'pix',
