@@ -144,6 +144,7 @@ describe('Charges', () => {
 
   test('should succeed in creating a charge with session', async () => {
     const sessionId = 'bdc23b4e-2270-4f10-896f-f2cb82d2b29d'
+    const publicKey = '86082c7f-f998-4beb-8771-6e7240ef8636'
 
     const chargeResponse = {
       id: '76ae1681-f0b1-4849-a6ef-e9c93649e6c7',
@@ -212,6 +213,7 @@ describe('Charges', () => {
     const charges = new Charges(api, cards, customers)
     const response = await charges.create({
       sessionId,
+      publicKey,
       paymentMethod: {
         type: 'credit',
         installments: 1,
@@ -229,6 +231,7 @@ describe('Charges', () => {
 
   test('should generate an error when trying to create the charge with session', async () => {
     const sessionId = 'bdc23b4e-2270-4f10-896f-f2cb82d2b29d'
+    const publicKey = '86082c7f-f998-4beb-8771-6e7240ef8636'
 
     server.use(
       request.post(
@@ -253,6 +256,7 @@ describe('Charges', () => {
     try {
       await charges.create({
         sessionId,
+        publicKey,
         paymentMethod: {
           type: 'credit',
           installments: 1,

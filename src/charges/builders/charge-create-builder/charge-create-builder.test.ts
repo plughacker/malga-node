@@ -560,6 +560,7 @@ describe('ChargeCreateBuilder', () => {
     const chargeCreateBuilder = new ChargeCreateBuilder(cards, customers)
     const payload = await chargeCreateBuilder.payload({
       sessionId: 'b60952bf-32ed-4e84-8475-3bd1b179d94a',
+      publicKey: '86082c7f-f998-4beb-8771-6e7240ef8636',
       customerId: 'fa68fbab-8807-410f-ac9f-8994e566038f',
       paymentMethod: {
         type: 'pix',
