@@ -1,6 +1,6 @@
 import { BaseHandler } from '../base'
 
-import { Customer } from 'src/common/interfaces/customer'
+import { Customer } from 'src/customers/interfaces/customers'
 import { ChargePaymentMethodDrip } from 'src/charges/interfaces/create-charge'
 
 import { DripHandlerPayload } from './interfaces'

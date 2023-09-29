@@ -1,8 +1,7 @@
 import { server, request } from 'tests'
 
 import { Sessions } from './sessions'
-import { Session } from 'src/common/interfaces/sessions'
-import { SessionResponse } from './sessions.types'
+import { Session, SessionResponse } from './interfaces/sessions'
 import { Api } from 'src/common/api'
 
 const api = new Api({ apiKey: 'API_KEY', clientId: 'CLIENT_ID' })

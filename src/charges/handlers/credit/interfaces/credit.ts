@@ -3,7 +3,7 @@ import { ChargePaymentMethodCredit } from 'src/charges/interfaces/create-charge'
 import {
   ChargePaymentSourceCustomer,
   ChargePaymentSourceCustomerOneShot,
-} from 'src/common/interfaces/charges'
+} from 'src/charges/interfaces/charges'
 
 export type CreditHandlerPayload = ChargeHandlerResponse
 

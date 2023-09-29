@@ -152,9 +152,6 @@ describe('VoucherHandler', () => {
           }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -228,18 +225,12 @@ describe('VoucherHandler', () => {
           }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/cards', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -319,27 +310,18 @@ describe('VoucherHandler', () => {
           }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/cards', (_, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({ id: 'f0544db1-851a-45f1-865e-cd7c973962db' }),
         )
       }),
-    )
-
-    server.use(
       request.post(
         `https://api.malga.io/v1/customer/${customerId}/cards`,
         (_, res, ctx) => {
@@ -434,9 +416,6 @@ describe('VoucherHandler', () => {
           ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/cards', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -491,18 +470,12 @@ describe('VoucherHandler', () => {
           ctx.json({ tokenId: '41d4c30d-a628-4a29-ad16-150df4310cd2' }),
         )
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/cards', (_, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({ id: 'f0544db1-851a-45f1-865e-cd7c973962db' }),
         )
       }),
-    )
-
-    server.use(
       request.post(
         `https://api.malga.io/v1/customer/${customerId}/cards`,
         (_, res, ctx) => {

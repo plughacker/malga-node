@@ -61,9 +61,6 @@ describe('Charges', () => {
       request.post('https://api.malga.io/v1/charges', (_, res, ctx) => {
         return res(ctx.status(200), ctx.json(chargeResponse))
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -109,9 +106,6 @@ describe('Charges', () => {
       request.post('https://api.malga.io/v1/charges', (_, res, ctx) => {
         return res(ctx.status(400), ctx.json(error))
       }),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -199,9 +193,6 @@ describe('Charges', () => {
           return res(ctx.status(200), ctx.json(chargeResponse))
         },
       ),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -240,9 +231,6 @@ describe('Charges', () => {
           return res(ctx.status(500))
         },
       ),
-    )
-
-    server.use(
       request.post('https://api.malga.io/v1/tokens', (_, res, ctx) => {
         return res(
           ctx.status(200),
@@ -250,7 +238,6 @@ describe('Charges', () => {
         )
       }),
     )
-
     const charges = new Charges(api, cards, customers)
 
     try {
