@@ -201,18 +201,16 @@ interface ChargeTransactionRequest {
   fraudAnalysis?: ChargeFraudAnalysis
 }
 
-interface AppInfoPlatform {
-  integrator: string
-  name: string
-  version: string
-}
-
 interface AppInfoBase {
   name: string
   version: string
 }
 
-interface AppInfo {
+interface AppInfoPlatform extends AppInfoBase {
+  integrator: string
+}
+
+export interface AppInfo {
   platform?: AppInfoPlatform
   device?: AppInfoBase
   system?: AppInfoBase

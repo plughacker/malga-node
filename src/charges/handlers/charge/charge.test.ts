@@ -1,3 +1,5 @@
+import { version } from '../../../../package.json'
+
 import { ChargeHandler } from './charge'
 
 describe('ChargeHandler', () => {
@@ -50,6 +52,13 @@ describe('ChargeHandler', () => {
         },
         redirectURL: 'https://localhost:3000',
         requestorURL: 'https://localhost:3000',
+      },
+      appInfo: {
+        platform: {
+          name: 'NODE.JS SDK',
+          integrator: 'MALGA',
+          version,
+        },
       },
     })
   })

@@ -4,6 +4,7 @@ import {
   ChargePaymentType,
   ChargeProvider,
   SplitRule,
+  AppInfo,
 } from 'src/common/interfaces/charges'
 import { Customer } from 'src/common/interfaces/customer'
 
@@ -230,6 +231,7 @@ interface ChargeCommonCreatePayload {
 
 export interface ChargeSessionCreatePayload extends ChargeCommonCreatePayload {
   sessionId: string
+  appInfo?: Omit<AppInfo, 'platform'>
 }
 
 export interface ChargeCreatePayload extends ChargeCommonCreatePayload {
@@ -241,6 +243,7 @@ export interface ChargeCreatePayload extends ChargeCommonCreatePayload {
   description?: string
   statementDescriptor?: string
   splitRules?: SplitRule[]
+  appInfo?: Omit<AppInfo, 'platform'>
 }
 
 export interface ChargeListParams extends ApiPaginateParamsBase {

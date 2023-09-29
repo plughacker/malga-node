@@ -45,7 +45,7 @@ export class Charges {
   public async create(
     payload: ChargeCreatePayload | ChargeSessionCreatePayload,
     options?: ApiPostOptions,
-  ): Promise<any> {
+  ): Promise<Charge> {
     const chargeCreateBuilder = new ChargeCreateBuilder(
       this.cards,
       this.customers,

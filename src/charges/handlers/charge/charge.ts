@@ -1,3 +1,5 @@
+import { version } from '../../../../package.json'
+
 import { BaseHandler } from '../base'
 
 import { ChargeHandlerPayload } from './charge.types'
@@ -12,6 +14,14 @@ export class ChargeHandler extends BaseHandler {
     const charge = {
       ...rest,
       ...threeDSecure2,
+      appInfo: {
+        ...rest.appInfo,
+        platform: {
+          name: 'NODE.JS SDK',
+          integrator: 'MALGA',
+          version,
+        },
+      },
     }
 
     return super.handle(charge)
