@@ -29,6 +29,7 @@ export class Charges {
    * @returns Charge API response
    *
    * @example
+   * Here is an example of how to create a charge
    * ```
    * import { Malga } from 'malga'
    *
@@ -38,7 +39,63 @@ export class Charges {
    * })
    *
    * const charge = await malga.charges.create({
+   *   merchantId: 'MERCHANT_ID',
+   *   amount: 100,
+   *   customer: {
+   *     name: 'Homer Simpson',
+   *     email: 'homer@simpsons.com',
+   *     phoneNumber: '99999999999',
+   *     document: {
+   *       type: 'cpf',
+   *       number: '99999999999',
+   *       country: 'BR',
+   *     },
+   *     address: {
+   *       street: 'Evergreen Terrace',
+   *       streetNumber: '742',
+   *       zipCode: '62629',
+   *       country: 'US',
+   *       state: 'Louisiana',
+   *       city: 'Springfield',
+   *       district: 'Suburb',
+   *       complement: 'Residence'
+   *     }
+   *   },
+   *   paymentMethod: {
+   *     type: 'credit',
+   *     card: {
+   *       holderName: 'Homer Simpson',
+   *       number: '5402502027127339'
+   *       cvv: '391',
+   *       expirationDate: '01/2025'
+   *     }
+   *   }
+   * })
+   * ```
    *
+   * @example
+   * Here is an example of how to create a charge with session
+   * ```
+   * import { Malga } from 'malga'
+   *
+   * const malga = new Malga({
+   *   apiKey: 'API_KEY',
+   *   clientId: 'CLIENT_ID',
+   * })
+   *
+   * const charge = await malga.charges.create({
+   *   sessionId: 'SESSION_ID',
+   *   publicKey: 'PUBLIC_KEY'
+   *   customerId: 'CUSTOMER_ID',
+   *   paymentMethod: {
+   *     type: 'credit',
+   *     card: {
+   *       holderName: 'Homer Simpson',
+   *       number: '5402502027127339'
+   *       cvv: '391',
+   *       expirationDate: '01/2025'
+   *     }
+   *   }
    * })
    * ```
    */
