@@ -1,11 +1,17 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
+import { Api } from 'src/common/api'
+
+import { ApiPostOptions } from 'src/common/interfaces'
 
 import {
-  Seller,
+  SellerCreatePayload,
+  SellerCreateResponse,
+  SellerFindResponse,
   SellerListParams,
+  SellerListResponse,
+  SellerUpdatePayload,
+  SellerUpdateResponse,
   SellerRemovePayload,
-  SellerResponse,
-} from './sellers.types'
+} from './interfaces'
 
 export class Sellers {
   constructor(private readonly api: Api) {}
@@ -76,9 +82,9 @@ export class Sellers {
    * ```
    */
   public async create(
-    payload: Seller,
+    payload: SellerCreatePayload,
     options?: ApiPostOptions,
-  ): Promise<SellerResponse> {
+  ): Promise<SellerCreateResponse> {
     return this.api.post('/sellers', payload, options?.idempotencyKey)
   }
 
@@ -102,7 +108,7 @@ export class Sellers {
    * const seller = await malga.sellers.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
-  public async find(id: string): Promise<SellerResponse> {
+  public async find(id: string): Promise<SellerFindResponse> {
     return this.api.get(`/sellers/${id}`)
   }
 
@@ -126,9 +132,7 @@ export class Sellers {
    * const sellers = await malga.sellers.list({ page: 1, limit: 15 })
    * ```
    */
-  public async list(
-    params?: SellerListParams,
-  ): Promise<ApiPaginateResponse<SellerResponse>> {
+  public async list(params?: SellerListParams): Promise<SellerListResponse> {
     const parsedParams = {
       ...params,
       email: params?.email,
@@ -203,7 +207,10 @@ export class Sellers {
    * })
    * ```
    */
-  public async update(id: string, payload: Seller): Promise<SellerResponse> {
+  public async update(
+    id: string,
+    payload: SellerUpdatePayload,
+  ): Promise<SellerUpdateResponse> {
     return this.api.patch(`/sellers/${id}`, payload)
   }
 

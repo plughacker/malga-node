@@ -1,9 +1,11 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { MalgaConfigurations, MalgaErrorResponse } from '../../malga.types'
-
-import { ApiPaginateParamsBase } from './api.types'
+import {
+  ApiPaginateParamsBase,
+  MalgaConfigurations,
+  MalgaErrorResponse,
+} from 'src/common/interfaces'
 
 export class Api {
   private static TEN_SECONDS_RETRY_DELAY = 10 * 1000

@@ -1,9 +1,9 @@
 import { BaseHandler } from '../base'
 
 import { Customer } from 'src/common/interfaces/customer'
-import { ChargePaymentMethodPix } from 'src/charges/charges.types'
+import { ChargePaymentMethodPix } from 'src/charges/interfaces/create-charge'
 
-import { PixHandlerPayload } from './pix.types'
+import { PixHandlerPayload } from './interfaces'
 
 export class PixHandler extends BaseHandler {
   private parsePaymentMethod(paymentMethod: ChargePaymentMethodPix) {

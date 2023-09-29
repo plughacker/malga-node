@@ -1,7 +1,7 @@
-import { ChargeSessionCreatePayload } from 'src/charges/charges.types'
+import { ChargeSessionCreatePayload } from 'src/charges/interfaces/create-charge'
 import { BaseHandler } from '../base'
 
-import { SessionHandlerPayload } from './session.types'
+import { SessionHandlerPayload } from './interfaces'
 
 export class SessionHandler extends BaseHandler {
   public handle(payload: SessionHandlerPayload) {

@@ -1,4 +1,4 @@
-import { Handler } from './base.types'
+import { Handler } from './interfaces'
 
 export abstract class BaseHandler implements Handler {
   private nextHandler: Handler | null = null

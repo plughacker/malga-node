@@ -2,7 +2,7 @@ import { server, request } from 'tests'
 import { Api } from 'src/common/api'
 
 import { Sellers } from './sellers'
-import { Seller } from './sellers.types'
+import { Seller } from './interfaces/sellers'
 
 const api = new Api({
   apiKey: 'API_KEY',

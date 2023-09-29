@@ -1,9 +1,9 @@
 import { BaseHandler } from '../base'
 
 import { Customer } from 'src/common/interfaces/customer'
-import { ChargePaymentMethodDrip } from 'src/charges/charges.types'
+import { ChargePaymentMethodDrip } from 'src/charges/interfaces/create-charge'
 
-import { DripHandlerPayload } from './drip.types'
+import { DripHandlerPayload } from './interfaces'
 
 export class DripHandler extends BaseHandler {
   private parsePaymentMethod(paymentMethod: ChargePaymentMethodDrip) {

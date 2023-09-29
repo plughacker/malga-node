@@ -1,12 +1,15 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
-import { Session } from 'src/common/interfaces/sessions'
+import { Api } from 'src/common/api'
+import { ApiPostOptions } from 'src/common/interfaces'
 
 import {
+  SessionCreatePayload,
+  SessionCreateResponse,
+  SessionFindResponse,
   SessionListParams,
-  SessionResponse,
+  SessionListResponse,
   SessionCancelResponse,
-  SessionActiveStatusResponse,
-} from './sessions.types'
+  SessionToggleActiveStatusResponse,
+} from './interfaces'
 
 export class Sessions {
   constructor(private readonly api: Api) {}
@@ -45,9 +48,9 @@ export class Sessions {
    * ```
    */
   public async create(
-    payload: Session,
+    payload: SessionCreatePayload,
     options?: ApiPostOptions,
-  ): Promise<SessionResponse> {
+  ): Promise<SessionCreateResponse> {
     return this.api.post('/sessions', payload, options?.idempotencyKey)
   }
 
@@ -71,7 +74,7 @@ export class Sessions {
    * const session = await malga.sessions.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
-  public async find(id: string): Promise<SessionResponse> {
+  public async find(id: string): Promise<SessionFindResponse> {
     return this.api.get(`/sessions/${id}`)
   }
 
@@ -98,9 +101,7 @@ export class Sessions {
    * })
    * ```
    */
-  public async list(
-    params?: SessionListParams,
-  ): Promise<ApiPaginateResponse<SessionResponse>> {
+  public async list(params?: SessionListParams): Promise<SessionListResponse> {
     const parsedParams = {
       page: params?.page,
       limit: params?.limit,
@@ -157,7 +158,7 @@ export class Sessions {
    * await malga.sessions.enable('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
    * ```
    */
-  public async enable(id: string): Promise<SessionActiveStatusResponse> {
+  public async enable(id: string): Promise<SessionToggleActiveStatusResponse> {
     return this.api.patch(`/sessions/${id}`, { isActive: true })
   }
 
@@ -181,7 +182,7 @@ export class Sessions {
    * await malga.sessions.disable('575f9a3c-6e40-4077-852e-c6781dc3c7c7')
    * ```
    */
-  public async disable(id: string): Promise<SessionActiveStatusResponse> {
+  public async disable(id: string): Promise<SessionToggleActiveStatusResponse> {
     return this.api.patch(`/sessions/${id}`, { isActive: false })
   }
 }

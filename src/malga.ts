@@ -1,14 +1,14 @@
-import { Api } from './common/api'
 import { Auth } from './auth'
 import { Customers } from './customers'
 import { Sellers } from './sellers'
 import { Sessions } from './sessions'
 import { Webhooks } from './webhooks'
-
-import { MalgaConfigurations } from './malga.types'
 import { Sandbox } from './sandbox'
 import { Cards } from './cards'
 import { Charges } from './charges'
+
+import { Api } from './common/api'
+import { MalgaConfigurations } from './common/interfaces/malga'
 
 export class Malga {
   readonly auth: Auth

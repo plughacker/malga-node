@@ -2,11 +2,10 @@ import { BaseHandler } from '../base'
 
 import { Cards } from 'src/cards'
 import { Customers } from 'src/customers'
+import { Customer } from 'src/customers/interfaces/customers'
 
-import { ChargePaymentMethodCredit } from 'src/charges/charges.types'
-
-import { CreditHandlerPayload } from './credit.types'
-import { Customer } from 'src/common/interfaces/customer'
+import { ChargePaymentMethodCredit } from 'src/charges/interfaces/create-charge'
+import { CreditHandlerPayload } from './interfaces'
 
 export class CreditHandler extends BaseHandler {
   constructor(
