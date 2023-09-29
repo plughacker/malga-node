@@ -32,7 +32,7 @@ describe('Sandbox', () => {
         installments: 1,
         paymentType: 'credit',
       },
-      paymentSource: {
+      sourceType: {
         sourceType: 'card',
         cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
       },
@@ -108,7 +108,7 @@ describe('Sandbox', () => {
         installments: 1,
         paymentType: 'credit',
       },
-      paymentSource: {
+      sourceType: {
         sourceType: 'card',
         cardId: 'a65e20e3-d527-452a-8f2c-a613a7ce4bd1',
       },

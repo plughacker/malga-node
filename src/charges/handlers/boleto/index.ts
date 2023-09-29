@@ -1,0 +1,1 @@
+export { BoletoHandler } from './boleto'

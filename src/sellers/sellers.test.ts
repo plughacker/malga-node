@@ -172,7 +172,7 @@ describe('Sellers', () => {
       ],
       owner: {
         name: 'Homer Simpson',
-        email: 'homer@simpsons',
+        email: 'homer@simpsons.com',
         phoneNumber: '99999999999',
         birthdate: '1989-12-17',
         document: {
@@ -280,7 +280,7 @@ describe('Sellers', () => {
           ],
           owner: {
             name: 'Homer Simpson',
-            email: 'homer@simpsons',
+            email: 'homer@simpsons.com',
             phoneNumber: '99999999999',
             birthdate: '1989-12-17',
             document: {
@@ -340,7 +340,12 @@ describe('Sellers', () => {
     )
 
     const sellers = new Sellers(api)
-    const response = await sellers.list({ limit: 15, page: 1 })
+    const response = await sellers.list({
+      limit: 15,
+      page: 1,
+      email: 'homer@simpsons.com',
+      status: ['active'],
+    })
 
     expect(response).toMatchObject(sellerList)
   })

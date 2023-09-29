@@ -84,7 +84,7 @@ export interface SellerResponse extends Seller {
 
 export interface SellerListParams extends ApiPaginateParamsBase {
   email?: string
-  status?: SellerStatus
+  status?: SellerStatus[]
 }
 
 export interface SellerRemovePayload {

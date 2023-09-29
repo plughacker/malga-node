@@ -104,8 +104,8 @@ export class Sessions {
     const parsedParams = {
       page: params?.page,
       limit: params?.limit,
-      status: params?.status,
-      isActive: params?.isActive,
+      status: params?.status?.join(),
+      isActive: params?.isActive?.join(),
       'created.gt': params?.startDate,
       'created.lt': params?.endDate,
     }
@@ -119,7 +119,7 @@ export class Sessions {
    * @link https://docs.malga.io/api#operation/cancelSession
    *
    * @param id - Session ID
-   * @returns void
+   * @returns Session API response
    *
    * @example
    * ```
@@ -143,7 +143,7 @@ export class Sessions {
    * @link https://docs.malga.io/api#operation/patchSession
    *
    * @param id - Session ID
-   * @returns void
+   * @returns Session API response
    *
    * @example
    * ```
@@ -167,7 +167,7 @@ export class Sessions {
    * @link https://docs.malga.io/api#operation/patchSession
    *
    * @param id - Session ID
-   * @returns void
+   * @returns Session API response
    *
    * @example
    * ```

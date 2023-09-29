@@ -12,12 +12,51 @@ export type ChargeStatus =
   | 'refund_pending'
   | 'created'
 
-interface SplitRule {
+export type ChargePaymentType =
+  | 'pix'
+  | 'credit'
+  | 'boleto'
+  | 'voucher'
+  | 'nupay'
+  | 'drip'
+
+export type ChargeProvider =
+  | 'PAGARME'
+  | 'PAGSEGURO'
+  | 'PAGSEGURO_PIX'
+  | 'BS2'
+  | 'BS2_BOLETO'
+  | 'BB'
+  | 'CIELO'
+  | 'GERENCIA_NET'
+  | 'ZOOP'
+  | 'STRIPE'
+  | 'REDE'
+  | 'MERCADO_PAGO'
+  | 'CLEARSALE'
+  | 'BRAINTREE'
+  | 'NUPAY'
+  | 'ADYEN'
+  | 'KLAP'
+  | 'GETNET'
+  | 'BRASPAG'
+  | 'SANDBOX'
+  | 'SANDBOX_ANTIFRAUD'
+  | 'WORLDPAY'
+  | 'VR'
+  | 'DRIP'
+  | 'PAGARME_V5'
+
+export interface SplitRule {
   sellerId: string
-  percentage: number
-  amount: number
+  percentage?: number
+  amount?: number
   processingFee: boolean
   liable: boolean
+  fares?: {
+    mdr: number
+    fee: number
+  }
 }
 
 interface ChargePaymentMethodCard {
@@ -84,12 +123,12 @@ interface ChargePaymentSourceToken {
   tokenId: string
 }
 
-interface ChargePaymentSourceCustomer {
+export interface ChargePaymentSourceCustomer {
   sourceType: 'customer'
   customerId: string
 }
 
-interface ChargePaymentSourceCustomerOneShot {
+export interface ChargePaymentSourceCustomerOneShot {
   sourceType: 'customer'
   customer?: Customer
 }
@@ -100,30 +139,6 @@ type ChargePaymentSource =
   | ChargePaymentSourceToken
   | ChargePaymentSourceCustomer
   | ChargePaymentSourceCustomerOneShot
-
-type Provider =
-  | 'BS2'
-  | 'BS2_BOLETO'
-  | 'BB'
-  | 'CIELO'
-  | 'MERCADO_PAGO'
-  | 'PAGARME'
-  | 'REDE'
-  | 'PLUG_SANDBOX'
-  | 'SANDBOX'
-  | 'STRIPE'
-  | 'ZOOP'
-  | 'PAGSEGURO'
-  | 'BRAINTREE'
-  | 'CLEARSALE'
-  | 'NUPAY'
-  | 'ADYEN'
-  | 'KLAP'
-  | 'GETNET'
-  | 'BRASPAG'
-  | 'VR'
-  | 'DRIP'
-  | 'SANDBOX_ANTIFRAUD'
 
 type ChargeRequestStatus =
   | 'running'
@@ -173,7 +188,7 @@ interface ChargeTransactionRequest {
   updatedAt: string
   idempotencyKey: string
   providerId: string
-  providerType: Provider | null
+  providerType: ChargeProvider | null
   transactionId: string | null
   amount: number
   authorizationCode: string
@@ -186,18 +201,16 @@ interface ChargeTransactionRequest {
   fraudAnalysis?: ChargeFraudAnalysis
 }
 
-interface AppInfoPlatform {
-  integrator: string
-  name: string
-  version: string
-}
-
 interface AppInfoBase {
   name: string
   version: string
 }
 
-interface AppInfo {
+interface AppInfoPlatform extends AppInfoBase {
+  integrator: string
+}
+
+export interface AppInfo {
   platform?: AppInfoPlatform
   device?: AppInfoBase
   system?: AppInfoBase
@@ -218,7 +231,7 @@ export interface Charge {
   capture: boolean
   status: ChargeStatus
   paymentMethod: ChargePaymentMethod
-  paymentSource: ChargePaymentSource
+  sourceType: ChargePaymentSource
   transactionRequests: ChargeTransactionRequest[]
   splitRules?: SplitRule[]
   appInfo: AppInfo | null

@@ -7,6 +7,7 @@ import {
   CustomerListParams,
   CustomerCardsResponse,
   CustomerLinkCardPayload,
+  CustomerCreateResponse,
 } from './customers.types'
 
 export class Customers {
@@ -55,7 +56,7 @@ export class Customers {
   public async create(
     payload: Customer,
     options?: ApiPostOptions,
-  ): Promise<Customer> {
+  ): Promise<CustomerCreateResponse> {
     return this.api.post('/customers', payload, options?.idempotencyKey)
   }
 

@@ -1,6 +1,11 @@
 import { ApiPaginateParamsBase } from 'src/common/api'
 import { Customer } from 'src/common/interfaces/customer'
 
+export interface CustomerCreateResponse extends Customer {
+  id: string
+  createdAt: string
+}
+
 export type CustomerUpdatePayload = Omit<Customer, 'document' | 'email'>
 
 export interface CustomerUpdateResponse {

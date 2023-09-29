@@ -15,8 +15,8 @@ export interface SessionResponse extends Omit<Session, 'createLink'> {
 export interface SessionListParams extends Omit<ApiPaginateParamsBase, 'sort'> {
   startDate?: string
   endDate?: string
-  isActive?: boolean
-  status?: SessionStatus
+  isActive?: boolean[]
+  status?: SessionStatus[]
 }
 
 export interface SessionCancelResponse {

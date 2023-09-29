@@ -119,11 +119,16 @@ export class Api {
     path: string,
     payload?: Payload,
     idempotencyKey?: string,
+    publicKey?: string,
   ) {
     const headers: Record<string, string> = {}
 
     if (idempotencyKey) {
       headers['X-Idempotency-Key'] = idempotencyKey
+    }
+
+    if (publicKey) {
+      headers['X-Api-Key'] = publicKey
     }
 
     return this.api
