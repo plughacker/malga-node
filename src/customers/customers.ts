@@ -1,15 +1,18 @@
-import { Api, ApiPostOptions, ApiPaginateResponse } from 'src/common/api'
-import { Customer } from 'src/common/interfaces/customer'
+import { Api } from 'src/common/api'
+import { ApiPostOptions } from 'src/common/interfaces'
 
 import {
+  CustomerFindResponse,
   CustomerUpdatePayload,
   CustomerUpdateResponse,
   CustomerListParams,
   CustomerCardsResponse,
   CustomerLinkCardPayload,
-  CustomerCreateResponse,
   CustomerCreateOptions,
-} from './customers.types'
+  CustomerCreatePayload,
+  CustomerCreateResponse,
+  CustomerListResponse,
+} from './interfaces'
 
 export class Customers {
   constructor(private readonly api: Api) {}
@@ -88,7 +91,7 @@ export class Customers {
    * ```
    */
   public async create(
-    payload: Customer,
+    payload: CustomerCreatePayload,
     options?: CustomerCreateOptions,
   ): Promise<CustomerCreateResponse> {
     const endpoint = options?.force
@@ -118,7 +121,7 @@ export class Customers {
    * const customer = await malga.customers.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
-  public async find(id: string): Promise<Customer> {
+  public async find(id: string): Promise<CustomerFindResponse> {
     return this.api.get(`/customers/${id}`)
   }
 
@@ -144,7 +147,7 @@ export class Customers {
    */
   public async list(
     params?: CustomerListParams,
-  ): Promise<ApiPaginateResponse<Customer>> {
+  ): Promise<CustomerListResponse> {
     const parsedParams = {
       page: params?.page,
       limit: params?.limit,

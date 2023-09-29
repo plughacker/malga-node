@@ -1,12 +1,13 @@
 import { Api } from 'src/common/api'
-import { Charge } from 'src/common/interfaces/charges'
 
 import {
   SandboxChangeChargeStatusPayload,
+  SandboxChangeChargeStatusResponse,
   SandboxChangeAntifraudStatusPayload,
+  SandboxChangeAntifraudStatusResponse,
   SandboxGenerateCardParams,
   SandboxGenerateCardResponse,
-} from './sandbox.types'
+} from './interfaces'
 
 import { cards } from './sandbox.utils'
 
@@ -46,7 +47,7 @@ export class Sandbox {
   public async changeChargeStatus(
     id: string,
     payload: SandboxChangeChargeStatusPayload,
-  ): Promise<Charge> {
+  ): Promise<SandboxChangeChargeStatusResponse> {
     if (!this.isSandbox) {
       throw new Error(
         `This module only works in the sandbox environment. To enable it, simply pass:
@@ -92,7 +93,7 @@ export class Sandbox {
   public async changeAntifraudStatus(
     id: string,
     payload: SandboxChangeAntifraudStatusPayload,
-  ): Promise<Charge> {
+  ): Promise<SandboxChangeAntifraudStatusResponse> {
     if (!this.isSandbox) {
       throw new Error(
         `This module only works in the sandbox environment. To enable it, simply pass:

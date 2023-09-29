@@ -1,9 +1,9 @@
 import { BaseHandler } from '../base'
 
-import { Customer } from 'src/common/interfaces/customer'
-import { ChargePaymentMethodBoleto } from 'src/charges/charges.types'
+import { Customer } from 'src/customers/interfaces/customers'
 
-import { BoletoHandlerPayload } from './boleto.types'
+import { ChargePaymentMethodBoleto } from 'src/charges/interfaces/create-charge'
+import { BoletoHandlerPayload } from './interfaces'
 
 export class BoletoHandler extends BaseHandler {
   private parsePaymentMethod(paymentMethod: ChargePaymentMethodBoleto) {

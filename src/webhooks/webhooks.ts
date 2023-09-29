@@ -1,6 +1,6 @@
 import crypto from 'node:crypto'
 
-import { WebhookVerifyParams } from './webhooks.types'
+import { WebhookVerifyParams } from './interfaces'
 
 export class Webhooks {
   constructor() {}

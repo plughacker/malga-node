@@ -2,7 +2,7 @@ import {
   GenerateCardBrand,
   GenerateCardStatus,
   SandboxGenerateCardResponse,
-} from './sandbox.types'
+} from './interfaces'
 
 const nextYear = new Date().getFullYear() + 1
 export const expirationDate = `03/${nextYear}`

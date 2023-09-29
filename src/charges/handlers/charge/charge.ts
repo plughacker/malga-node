@@ -2,7 +2,7 @@ import { version } from '../../../../package.json'
 
 import { BaseHandler } from '../base'
 
-import { ChargeHandlerPayload } from './charge.types'
+import { ChargeHandlerPayload } from './interfaces'
 
 export class ChargeHandler extends BaseHandler {
   public handle(payload: ChargeHandlerPayload) {

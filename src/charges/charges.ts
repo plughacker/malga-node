@@ -1,16 +1,23 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
-import { Charge } from 'src/common/interfaces/charges'
+import { Api } from 'src/common/api'
 
-import {
-  ChargeCreatePayload,
-  ChargeSessionCreatePayload,
-  ChargeListParams,
-  ChargeCapturePayload,
-  ChargeRefundPayload,
-} from './charges.types'
+import { ApiPostOptions } from 'src/common/interfaces'
+
 import { ChargeCreateBuilder } from './builders'
 import { Cards } from 'src/cards'
 import { Customers } from 'src/customers'
+
+import {
+  ChargeSessionCreatePayload,
+  ChargeCreatePayload,
+  ChargeCreateResponse,
+  ChargeFindResponse,
+  ChargeListParams,
+  ChargeListResponse,
+  ChargeCapturePayload,
+  ChargeCaptureResponse,
+  ChargeRefundPayload,
+  ChargeRefundResponse,
+} from './interfaces'
 
 export class Charges {
   constructor(
@@ -100,9 +107,9 @@ export class Charges {
    * ```
    */
   public async create(
-    payload: ChargeCreatePayload | ChargeSessionCreatePayload,
+    payload: ChargeCreatePayload,
     options?: ApiPostOptions,
-  ): Promise<Charge> {
+  ): Promise<ChargeCreateResponse> {
     const chargeCreateBuilder = new ChargeCreateBuilder(
       this.cards,
       this.customers,
@@ -142,7 +149,7 @@ export class Charges {
    * const charge = await malga.charges.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
-  public async find(id: string): Promise<Charge> {
+  public async find(id: string): Promise<ChargeFindResponse> {
     return this.api.get(`/charges/${id}`)
   }
 
@@ -180,9 +187,7 @@ export class Charges {
    * })
    * ```
    */
-  public async list(
-    params?: ChargeListParams,
-  ): Promise<ApiPaginateResponse<Charge>> {
+  public async list(params?: ChargeListParams): Promise<ChargeListResponse> {
     const parsedParams = {
       page: params?.page,
       limit: params?.limit,
@@ -230,7 +235,7 @@ export class Charges {
     id: string,
     payload: ChargeCapturePayload,
     options?: ApiPostOptions,
-  ): Promise<Charge> {
+  ): Promise<ChargeCaptureResponse> {
     return this.api.post(
       `/charges/${id}/capture`,
       payload,
@@ -266,7 +271,7 @@ export class Charges {
     id: string,
     payload: ChargeRefundPayload,
     options?: ApiPostOptions,
-  ): Promise<Charge> {
+  ): Promise<ChargeRefundResponse> {
     return this.api.post(
       `/charges/${id}/void`,
       payload,

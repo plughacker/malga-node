@@ -1,14 +1,16 @@
-import { Api, ApiPaginateResponse, ApiPostOptions } from 'src/common/api'
+import { Api } from 'src/common/api'
+
+import { ApiPostOptions } from 'src/common/interfaces'
 
 import {
   CardCreatePayload,
   CardCreateResponse,
   CardListParams,
-  CardResponse,
+  CardFindResponse,
   CardListResponse,
   CardTokenizationPayload,
   CardTokenizationResponse,
-} from './cards.types'
+} from './interfaces'
 
 export class Cards {
   constructor(private readonly api: Api) {}
@@ -67,7 +69,7 @@ export class Cards {
    * const card = await malga.cards.find('e917fc6d-c640-47a1-83eb-aa820dbd92fe')
    * ```
    */
-  public async find(id: string): Promise<CardResponse> {
+  public async find(id: string): Promise<CardFindResponse> {
     return this.api.get(`/cards/${id}`)
   }
 
@@ -94,9 +96,7 @@ export class Cards {
    * })
    * ```
    */
-  public async list(
-    params?: CardListParams,
-  ): Promise<ApiPaginateResponse<CardListResponse>> {
+  public async list(params?: CardListParams): Promise<CardListResponse> {
     return this.api.paginate('/cards', params)
   }
 

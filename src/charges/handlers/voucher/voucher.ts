@@ -3,10 +3,10 @@ import { BaseHandler } from '../base'
 import { Cards } from 'src/cards'
 import { Customers } from 'src/customers'
 
-import { ChargePaymentMethodVoucher } from 'src/charges/charges.types'
+import { ChargePaymentMethodVoucher } from 'src/charges/interfaces/create-charge'
 
-import { VoucherHandlerPayload } from './voucher.types'
-import { Customer } from 'src/common/interfaces/customer'
+import { VoucherHandlerPayload } from './interfaces'
+import { Customer } from 'src/customers/interfaces/customers'
 
 export class VoucherHandler extends BaseHandler {
   constructor(

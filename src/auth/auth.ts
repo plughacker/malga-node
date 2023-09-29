@@ -1,9 +1,11 @@
-import { Api, ApiPostOptions } from 'src/common/api'
+import { Api } from 'src/common/api'
+
+import { ApiPostOptions } from 'src/common/interfaces'
 
 import {
   AuthCreatePublicKeyPayload,
   AuthCreatePublicKeyResponse,
-} from './auth.types'
+} from './interfaces'
 
 export class Auth {
   constructor(private readonly api: Api) {}
