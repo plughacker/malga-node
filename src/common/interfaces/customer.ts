@@ -1,10 +1,10 @@
-export interface CustomerDocument {
+interface CustomerDocument {
   type: string
   number: string
   country?: string
 }
 
-export interface CustomerAddress {
+interface CustomerAddress {
   street: string
   streetNumber: string
   zipCode: string

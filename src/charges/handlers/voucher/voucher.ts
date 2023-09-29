@@ -131,7 +131,7 @@ export class VoucherHandler extends BaseHandler {
       ...rest,
       customerId: currentCustomerId,
       paymentMethod: this.parsePaymentMethod(paymentMethod),
-      sourceType: await this.parsePaymentSource(paymentMethod),
+      paymentSource: await this.parsePaymentSource(paymentMethod),
     })
   }
 }

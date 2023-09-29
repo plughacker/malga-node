@@ -129,7 +129,7 @@ export class CreditHandler extends BaseHandler {
       ...rest,
       customerId: currentCustomerId,
       paymentMethod: this.parsePaymentMethod(paymentMethod),
-      sourceType: await this.parsePaymentSource(
+      paymentSource: await this.parsePaymentSource(
         paymentMethod,
         currentCustomerId,
       ),

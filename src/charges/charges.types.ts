@@ -5,11 +5,7 @@ import {
   ChargeProvider,
   SplitRule,
 } from 'src/common/interfaces/charges'
-import {
-  Customer,
-  CustomerAddress,
-  CustomerDocument,
-} from 'src/common/interfaces/customer'
+import { Customer } from 'src/common/interfaces/customer'
 
 interface ChargePaymentMethodItem {
   id: string
@@ -22,7 +18,7 @@ interface ChargePaymentMethodCard {
   linkCardToCustomer?: boolean
   tokenCvv?: string
   tokenId?: string
-  cardCvv?: number
+  cardCvv?: string
   cardId?: string
   card?: {
     holderName: string
@@ -42,13 +38,13 @@ export interface ChargePaymentMethodCredit extends ChargePaymentMethodCard {
 
 export interface ChargePaymentMethodVoucher extends ChargePaymentMethodCard {
   type: 'voucher'
-  items?: ChargePaymentMethodItem
+  items?: ChargePaymentMethodItem[]
 }
 
 export interface ChargePaymentMethodPix {
   type: 'pix'
   expiresIn: number
-  additionalInfo?: Record<string, any>[]
+  additionalInfo?: { name: string; value: string }[]
   items?: ChargePaymentMethodItem[]
 }
 
@@ -86,20 +82,56 @@ export interface ChargePaymentMethodNuPay {
   cancelUrl?: string
   taxValue?: number
   delayToAutoCancel?: number
-  items: ChargePaymentMethodItem[]
+  items: ChargeCreateFraudAnalysisItem[]
 }
 
-export interface ChargeCreateFraudAnalysis {
+interface ChargeCreateFraudAnalysisAddress {
+  street: string
+  number: string
+  zipCode: string
+  country: string
+  state: string
+  city: string
+  district: string
+  complement?: string
+}
+
+interface ChargeCreateFraudAnalysisItem {
+  name: string
+  quantity: number
+  sku: string
+  unitPrice: number
+  risk: 'Low' | 'High'
+  description?: string
+  categoryId?: string
+  locality?: string
+  date?: string
+  type?: number
+  genre?: string
+  tickets?: {
+    quantityTicketSale?: number
+    quantityEventHouse?: number
+    convenienceFeeValue?: number
+    quantityFull?: number
+    quantityHalf?: number
+    batch?: number
+  }
+  location?: ChargeCreateFraudAnalysisAddress
+}
+
+interface ChargeCreateFraudAnalysis {
   sla?: number
   customer?: {
-    name: string
-    email: string
-    phoneNumber: string
-    document: CustomerDocument
-    registrationDate: string
-    deliveryAddress: CustomerAddress
-    billingAddress: CustomerAddress
-    browser: {
+    name?: string
+    email?: string
+    phone?: string
+    birthdate?: string
+    identity?: string
+    identityType?: string
+    registrationDate?: string
+    deliveryAddress?: ChargeCreateFraudAnalysisAddress
+    billingAddress?: ChargeCreateFraudAnalysisAddress
+    browser?: {
       browserFingerprint: string
       cookiesAccepted: boolean
       email: string
@@ -108,61 +140,48 @@ export interface ChargeCreateFraudAnalysis {
       type: string
     }
   }
-  cart: {
-    items: {
-      name: string
-      quantity: number
-      sku: string
-      unitPrice: number
-      risk: 'Low' | 'High'
-      description: string
-      categoryId: string
-      locality: string
-      date: string
-      type: number
-      genre: string
-      tickets: {
-        quantityTicketSale: number
-        quantityEventHouse: number
-        convenienceFeeValue: number
-        quantityFull: number
-        quantityHalf: number
-        batch: number
-      }
-      location: CustomerAddress
-    }[]
+  cart?: {
+    items: ChargeCreateFraudAnalysisItem[]
   }
-  device: {
-    os: {
-      type: string
-      version: string
+  device?: {
+    os?: {
+      type?: string
+      version?: string
     }
-    model: string
-    ramCapacity: number
-    diskCapacity: number
-    freeDiskSpace: number
-    resolution: number
-    vendors: Record<string, any>[]
-    vendorAttributes: {
-      flash: boolean
-      phoneCalls: boolean
-      sendSms: boolean
-      videoCamera: boolean
-      cpuCount: boolean
-      simulator: boolean
-      language: string
-      idiom: string
-      platform: string
-      name: string
-      family: string
-      retinaDisplay: boolean
-      camera: boolean
-      model: string
-      frontCamera: boolean
+    model?: string
+    ramCapacity?: number
+    diskCapacity?: number
+    freeDiskSpace?: number
+    resolution?: number
+    vendors?: Record<string, any>[]
+    vendorAttributes?: {
+      flash?: boolean
+      phoneCalls?: boolean
+      sendSms?: boolean
+      videoCamera?: boolean
+      cpuCount?: boolean
+      simulator?: boolean
+      language?: string
+      idiom?: string
+      platform?: string
+      name?: string
+      family?: string
+      retinaDisplay?: boolean
+      camera?: boolean
+      model?: string
+      frontCamera?: boolean
     }
   }
 }
 
+interface ChargeCreateThreeDSecureAddress {
+  street: string
+  streetNumber: string
+  zipCode: string
+  country: string
+  state: string
+  city: string
+}
 export interface ChargeCreateThreeDSecure {
   redirectURL: string
   requestorURL: string
@@ -178,11 +197,17 @@ export interface ChargeCreateThreeDSecure {
     userAgent: string
     ip: string
   }
-  billingAddress?: CustomerAddress
-  shippingAddress?: CustomerAddress
+  billingAddress?: ChargeCreateThreeDSecureAddress
+  shippingAddress?: ChargeCreateThreeDSecureAddress
   cardHolder?: {
     email: string
     mobilePhone?: string
+  }
+  authData?: {
+    action: string
+    providerType: string
+    responseType: string
+    response: Record<string, any>
   }
 }
 
@@ -212,7 +237,7 @@ export interface ChargeCreatePayload extends ChargeCommonCreatePayload {
   orderId?: string
   currency?: string
   capture?: boolean
-  merchantId?: string
+  merchantId: string
   description?: string
   statementDescriptor?: string
   splitRules?: SplitRule[]

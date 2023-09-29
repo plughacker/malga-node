@@ -124,6 +124,7 @@ describe('Charges', () => {
 
     try {
       await charges.create({
+        merchantId: '6d7fd1a2-f863-4983-bbea-dd8c34679f99',
         amount: 100,
         paymentMethod: {
           type: 'credit',
