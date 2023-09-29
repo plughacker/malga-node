@@ -1,9 +1,13 @@
-import { ApiPaginateParamsBase } from 'src/common/api'
+import { ApiPaginateParamsBase, ApiPostOptions } from 'src/common/api'
 import { Customer } from 'src/common/interfaces/customer'
 
 export interface CustomerCreateResponse extends Customer {
   id: string
   createdAt: string
+}
+
+export interface CustomerCreateOptions extends ApiPostOptions {
+  force?: boolean
 }
 
 export type CustomerUpdatePayload = Omit<Customer, 'document' | 'email'>

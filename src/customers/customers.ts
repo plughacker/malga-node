@@ -8,6 +8,7 @@ import {
   CustomerCardsResponse,
   CustomerLinkCardPayload,
   CustomerCreateResponse,
+  CustomerCreateOptions,
 } from './customers.types'
 
 export class Customers {
@@ -23,6 +24,7 @@ export class Customers {
    * @returns Customer API response
    *
    * @example
+   * Here is an example of how to create a customer
    * ```
    * import { Malga } from 'malga'
    *
@@ -52,12 +54,48 @@ export class Customers {
    *   },
    * })
    * ```
+   *
+   * * @example
+   * Here is an example of how to create a customer while removing email and document duplication checks
+   * ```
+   * import { Malga } from 'malga'
+   *
+   * const malga = new Malga({
+   *   apiKey: 'API_KEY',
+   *   clientId: 'CLIENT_ID',
+   * })
+   *
+   * const customer = await malga.customers.create({
+   *   name: 'Homer Simpson',
+   *   email: 'homer@simpsons.com',
+   *   phoneNumber: '99999999999',
+   *   document: {
+   *     type: 'cpf',
+   *     number: '99999999999',
+   *     country: 'BR',
+   *   },
+   *   address: {
+   *     street: 'Evergreen Terrace',
+   *     streetNumber: '742',
+   *     zipCode: '62629',
+   *     country: 'US',
+   *     state: 'Louisiana',
+   *     city: 'Springfield',
+   *     district: 'Suburb',
+   *     complement: 'Residence',
+   *   },
+   * }, { force: true })
+   * ```
    */
   public async create(
     payload: Customer,
-    options?: ApiPostOptions,
+    options?: CustomerCreateOptions,
   ): Promise<CustomerCreateResponse> {
-    return this.api.post('/customers', payload, options?.idempotencyKey)
+    const endpoint = options?.force
+      ? `/customers?force=${!!options.force}`
+      : '/customers'
+
+    return this.api.post(endpoint, payload, options?.idempotencyKey)
   }
 
   /**
