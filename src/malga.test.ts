@@ -210,9 +210,9 @@ describe('Malga', () => {
       ],
       appInfo: {
         platform: {
-          name: 'NODE.JS SDK',
+          name: 'Node.js SDK',
           version: '0.0.1',
-          integrator: 'MALGA',
+          integrator: 'Malga',
         },
       },
     })
@@ -417,9 +417,9 @@ describe('Malga', () => {
       ],
       appInfo: {
         platform: {
-          name: 'NODE.JS SDK',
+          name: 'Node.js SDK',
           version: '0.0.1',
-          integrator: 'MALGA',
+          integrator: 'Malga',
         },
       },
     })
@@ -559,9 +559,9 @@ describe('Malga', () => {
               ],
               appInfo: {
                 platform: {
-                  name: 'NODE.JS SDK',
+                  name: 'Node.js SDK',
                   version: '0.0.1',
-                  integrator: 'MALGA',
+                  integrator: 'Malga',
                 },
               },
             }),
@@ -673,9 +673,9 @@ describe('Malga', () => {
       ],
       appInfo: {
         platform: {
-          name: 'NODE.JS SDK',
+          name: 'Node.js SDK',
           version: '0.0.1',
-          integrator: 'MALGA',
+          integrator: 'Malga',
         },
       },
     })

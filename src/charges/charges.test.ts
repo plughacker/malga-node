@@ -54,7 +54,13 @@ describe('Charges', () => {
           },
         },
       ],
-      appInfo: null,
+      appInfo: {
+        platform: {
+          name: 'Node.js SDK',
+          version: '0.0.1',
+          integrator: 'Malga',
+        },
+      },
     }
 
     server.use(
@@ -183,7 +189,13 @@ describe('Charges', () => {
           },
         },
       ],
-      appInfo: null,
+      appInfo: {
+        platform: {
+          name: 'Node.js SDK',
+          version: '0.0.1',
+          integrator: 'Malga',
+        },
+      },
     }
 
     server.use(
@@ -311,7 +323,13 @@ describe('Charges', () => {
           },
         },
       ],
-      appInfo: null,
+      appInfo: {
+        platform: {
+          name: 'Node.js SDK',
+          version: '0.0.1',
+          integrator: 'Malga',
+        },
+      },
     }
 
     server.use(
@@ -404,7 +422,13 @@ describe('Charges', () => {
               },
             },
           ],
-          appInfo: null,
+          appInfo: {
+            platform: {
+              name: 'Node.js SDK',
+              version: '0.0.1',
+              integrator: 'MALGA',
+            },
+          },
         },
       ],
       meta: {
@@ -514,7 +538,13 @@ describe('Charges', () => {
           },
         },
       ],
-      appInfo: null,
+      appInfo: {
+        platform: {
+          name: 'Node.js SDK',
+          version: '0.0.1',
+          integrator: 'Malga',
+        },
+      },
     }
 
     server.use(
@@ -609,7 +639,13 @@ describe('Charges', () => {
           },
         },
       ],
-      appInfo: null,
+      appInfo: {
+        platform: {
+          name: 'Node.js SDK',
+          version: '0.0.1',
+          integrator: 'Malga',
+        },
+      },
     }
 
     server.use(
