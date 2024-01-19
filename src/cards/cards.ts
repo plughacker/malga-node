@@ -154,7 +154,12 @@ export class Cards {
     ].every((key) => !!payload[key as keyof CardTokenizationPayload])
 
     const parsedPayload = shouldTokenizeCard
-      ? payload
+      ? {
+          cardNumber: payload.number,
+          cardCvv: payload.cvv,
+          cardExpirationDate: payload.expirationDate,
+          cardHolderName: payload.holderName,
+        }
       : { cvvUpdate: payload.cvv }
 
     return this.api.post('/tokens', parsedPayload, options?.idempotencyKey)

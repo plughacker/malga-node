@@ -35,14 +35,14 @@
   },
   "lint-staged": {
     "packages/**/*.{ts,tsx}": [
-      "pnpm run lint"
+      "yarn lint"
     ]
   },
   "scripts": {
     "setup:husky": "husky install",
     "lint:check": "eslint --fix --ext .ts ./src",
     "format:check": "prettier --check \"./src/**/*.ts\"",
-    "lint": "pnpm run lint:check && pnpm run format:check && prettier --write .",
+    "lint": "yarn lint:check && yarn format:check && prettier --write .",
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "vitest",
     "test:ci": "vitest --run"

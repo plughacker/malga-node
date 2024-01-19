@@ -29,7 +29,7 @@ interface SessionBoleto {
 
 interface SessionCredit {
   paymentType: 'credit'
-  installments?: number
+  installments: number
 }
 
 interface SessionDrip {

@@ -29,7 +29,7 @@ scope and avoid unrelated commits.
    git remote add upstream git@github.com:plughacker/malga-node.git
 
    # Install the tools necessary for testing
-   pnpm install
+   yarn
    ```
 
 2. Create a branch for your feature or fix:
@@ -48,10 +48,10 @@ scope and avoid unrelated commits.
 
    ```bash
    # Test current code
-   pnpm run test
+   yarn test
 
    # Build current code
-   pnpm run build
+   yarn build
    ```
 
    > Note: ensure your version of Node is 18 or higher to run scripts

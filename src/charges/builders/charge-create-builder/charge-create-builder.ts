@@ -4,7 +4,7 @@ import { Customers } from 'src/customers'
 import {
   ChargeCreatePayload,
   ChargeSessionCreatePayload,
-} from 'src/charges/charges.types'
+} from 'src/charges/interfaces'
 
 import {
   ChargeHandler,

@@ -3,7 +3,7 @@ import { Charge, AppInfo, SplitRule } from './charges'
 
 interface ChargePaymentMethodItem {
   id: string
-  name: string
+  title: string
   unitPrice: number
   quantity: number
 }
@@ -27,7 +27,7 @@ interface ChargePaymentMethodCard {
 }
 export interface ChargePaymentMethodCredit extends ChargePaymentMethodCard {
   type: 'credit'
-  installments?: number
+  installments: number
 }
 
 export interface ChargePaymentMethodVoucher extends ChargePaymentMethodCard {
@@ -44,7 +44,7 @@ export interface ChargePaymentMethodPix {
 
 export interface ChargePaymentMethodBoleto {
   type: 'boleto'
-  expiresDate: string
+  expiresDate?: string
   instructions?: string
   interest?: {
     days: number
@@ -60,8 +60,8 @@ export interface ChargePaymentMethodBoleto {
 
 export interface ChargePaymentMethodDrip {
   type: 'drip'
-  successUrl?: string
-  cancelUrl?: string
+  successRedirectUrl?: string
+  cancelRedirectUrl?: string
   browser?: {
     ipAddress?: string
     browserFingerprint?: string
@@ -176,6 +176,7 @@ interface ChargeCreateThreeDSecureAddress {
   state: string
   city: string
 }
+
 export interface ChargeCreateThreeDSecure {
   redirectURL: string
   requestorURL: string
@@ -197,12 +198,6 @@ export interface ChargeCreateThreeDSecure {
     email: string
     mobilePhone?: string
   }
-  authData?: {
-    action: string
-    providerType: string
-    responseType: string
-    response: Record<string, any>
-  }
 }
 
 type ChargeCreatePaymentMethod =
@@ -213,10 +208,14 @@ type ChargeCreatePaymentMethod =
   | ChargePaymentMethodNuPay
   | ChargePaymentMethodVoucher
 
+interface ChargeCreatePaymentFlow {
+  metadata: Record<string, any>
+}
+
 interface ChargeCommonCreatePayload {
   paymentMethod: ChargeCreatePaymentMethod
   fraudAnalysis?: ChargeCreateFraudAnalysis
-  paymentFlow?: Record<string, any>
+  paymentFlow?: ChargeCreatePaymentFlow
   threeDSecure?: ChargeCreateThreeDSecure
   customer?: Customer
   customerId?: string

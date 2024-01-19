@@ -21,6 +21,12 @@ export class Malga {
   readonly webhooks: Webhooks
 
   constructor(configurations: MalgaConfigurations) {
+    if (!configurations.apiKey || !configurations.clientId) {
+      throw new Error(
+        'Missing API key. Pass it to the constructor `new Malga({ apiKey: "YOUR_API_KEY", clientId: "YOUR_CLIENT_ID" })`',
+      )
+    }
+
     const api = new Api(configurations)
     this.auth = new Auth(api)
     this.cards = new Cards(api)

@@ -1,11 +1,5 @@
 export type SellerStatus = 'active' | 'pending' | 'inactive'
 
-type SellerBankAccountType =
-  | 'conta_corrente'
-  | 'conta_poupanca'
-  | 'conta_corrente_conjunta'
-  | 'conta_poupanca_conjunta'
-
 interface SellerProvider {
   providerType: string
   externalId: string
@@ -36,7 +30,7 @@ interface SellerOwner {
   }
 }
 
-interface SellerBusiness extends SellerOwner {
+interface SellerBusiness extends Omit<SellerOwner, 'birthdate'> {
   website?: string
   facebook?: string
   twitter?: string
@@ -57,8 +51,12 @@ export interface Seller {
     branchNumber: string
     branchCheckDigit?: string
     accountNumber: string
-    accountCheckDigit?: string
-    type: SellerBankAccountType
+    accountCheckDigit: string
+    type:
+      | 'conta_corrente'
+      | 'conta_poupanca'
+      | 'conta_corrente_conjunta'
+      | 'conta_poupanca_conjunta'
   }
   transferPolicy: {
     transferDay: number
@@ -70,7 +68,7 @@ export interface Seller {
     automaticAnticipationDays?: string
     automaticAnticipation1025Delay?: string
   }
-  metadata: Record<string, string>[]
+  metadata?: Record<string, string>[]
 }
 
 export interface SellerResponse extends Seller {

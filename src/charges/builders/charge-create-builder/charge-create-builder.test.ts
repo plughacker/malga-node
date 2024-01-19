@@ -109,7 +109,7 @@ describe('ChargeCreateBuilder', () => {
         items: [
           {
             id: '1',
-            name: 'Product 1',
+            title: 'Product 1',
             quantity: 1,
             unitPrice: 100,
           },
@@ -156,7 +156,7 @@ describe('ChargeCreateBuilder', () => {
         items: [
           {
             id: '1',
-            name: 'Product 1',
+            title: 'Product 1',
             quantity: 1,
             unitPrice: 100,
           },
@@ -467,7 +467,7 @@ describe('ChargeCreateBuilder', () => {
         items: [
           {
             id: '1',
-            name: 'Product 1',
+            title: 'Product 1',
             quantity: 1,
             unitPrice: 100,
           },
@@ -513,7 +513,7 @@ describe('ChargeCreateBuilder', () => {
         items: [
           {
             id: '1',
-            name: 'Product 1',
+            title: 'Product 1',
             quantity: 1,
             unitPrice: 100,
           },
