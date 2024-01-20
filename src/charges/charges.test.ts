@@ -56,7 +56,7 @@ describe('Charges', () => {
       ],
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           version: '0.0.1',
           integrator: 'Malga',
         },
@@ -191,7 +191,7 @@ describe('Charges', () => {
       ],
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           version: '0.0.1',
           integrator: 'Malga',
         },
@@ -325,7 +325,7 @@ describe('Charges', () => {
       ],
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           version: '0.0.1',
           integrator: 'Malga',
         },
@@ -424,7 +424,7 @@ describe('Charges', () => {
           ],
           appInfo: {
             platform: {
-              name: 'Node.js SDK',
+              name: 'SDK Node.js',
               version: '0.0.1',
               integrator: 'MALGA',
             },
@@ -540,7 +540,7 @@ describe('Charges', () => {
       ],
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           version: '0.0.1',
           integrator: 'Malga',
         },
@@ -641,7 +641,7 @@ describe('Charges', () => {
       ],
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           version: '0.0.1',
           integrator: 'Malga',
         },

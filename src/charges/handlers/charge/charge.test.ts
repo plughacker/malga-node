@@ -55,7 +55,7 @@ describe('ChargeHandler', () => {
       },
       appInfo: {
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           integrator: 'Malga',
           version,
         },

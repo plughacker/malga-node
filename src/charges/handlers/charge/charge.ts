@@ -17,7 +17,7 @@ export class ChargeHandler extends BaseHandler {
       appInfo: {
         ...rest.appInfo,
         platform: {
-          name: 'Node.js SDK',
+          name: 'SDK Node.js',
           integrator: 'Malga',
           version,
         },
