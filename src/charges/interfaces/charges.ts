@@ -221,6 +221,7 @@ export interface Charge {
   clientId: string
   merchantId: string
   customerId?: string
+  providerReferenceKey: string | null
   description: string | null
   orderId: string | null
   createdAt: string

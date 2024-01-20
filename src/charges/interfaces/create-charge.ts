@@ -229,6 +229,7 @@ export interface ChargeSessionCreatePayload extends ChargeCommonCreatePayload {
 
 interface ChargeDefaultCreatePayload extends ChargeCommonCreatePayload {
   amount: number
+  providerReferenceKey?: string
   orderId?: string
   currency?: string
   capture?: boolean
