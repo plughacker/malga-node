@@ -38,12 +38,27 @@ interface SessionDrip {
   cancelRedirectUrl?: string
 }
 
+interface SessionNuPay {
+  paymentType: 'nupay'
+  orderUrl?: string
+  returnUrl?: string
+  cancelUrl?: string
+  taxValue?: number
+  delayToAutoCancel?: number
+}
+
 export interface Session {
   merchantId: string
   amount: number
   dueDate: string
   name: string
-  paymentMethods: (SessionCredit | SessionPix | SessionBoleto | SessionDrip)[]
+  paymentMethods: (
+    | SessionCredit
+    | SessionPix
+    | SessionBoleto
+    | SessionDrip
+    | SessionNuPay
+  )[]
   items: SessionItem[]
   description?: string
   statementDescriptor?: string
