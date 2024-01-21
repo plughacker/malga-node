@@ -29,7 +29,7 @@ export class Charges {
   /**
    * Create a charge
    *
-   * @link https://docs.malga.io/api#operation/charge
+   * @link https://docs.malga.io/docs/api-sdks/docs/charges/create-charge-credit
    *
    * @param payload - Charge object
    * @param options - API options like `idempotencyKey`
@@ -132,7 +132,7 @@ export class Charges {
   /**
    * Find charge details
    *
-   * @link https://docs.malga.io/api#operation/getChargesByid
+   * @link https://docs.malga.io/docs/api-sdks/docs/charges/find-charge
    *
    * @param id - Charge ID
    * @returns Charge API response
@@ -156,7 +156,7 @@ export class Charges {
   /**
    * List the charges
    *
-   * @link https://docs.malga.io/en/api#operation/getCharges
+   * @link https://docs.malga.io/docs/api-sdks/docs/charges/list-charges
    *
    * @param params - Filter params
    * @returns Charge API response
@@ -210,7 +210,7 @@ export class Charges {
   /**
    * Capture pre-authorized charge
    *
-   * @link https://docs.malga.io/en/api#operation/captureCharge
+   * @link https://docs.malga.io/docs/api-sdks/docs/charges/capture-charge
    *
    * @param id - Charge ID
    * @param payload - object with `amount` value
@@ -246,7 +246,7 @@ export class Charges {
   /**
    * Refund authorized charge
    *
-   * @link https://docs.malga.io/en/api#operation/refundCharge
+   * @link https://docs.malga.io/docs/api-sdks/docs/charges/refund-charge
    *
    * @param id - Charge ID
    * @param payload - object with `amount` value

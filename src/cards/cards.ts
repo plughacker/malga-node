@@ -18,7 +18,7 @@ export class Cards {
   /**
    * Create a card
    *
-   * @link https://docs.malga.io/api#operation/saveCard
+   * @link https://docs.malga.io/docs/api-sdks/docs/cards/create-card
    *
    * @param payload - Card object
    * @param options - API options like `idempotencyKey`
@@ -52,7 +52,7 @@ export class Cards {
   /**
    * Find card details
    *
-   * @link https://docs.malga.io/api#operation/getCardById
+   * @link https://docs.malga.io/docs/api-sdks/docs/cards/find-card
    *
    * @param id - Card ID
    * @returns Card API response
@@ -76,7 +76,7 @@ export class Cards {
   /**
    * List the cards
    *
-   * @link https://docs.malga.io/api#operation/getCards
+   * @link https://docs.malga.io/docs/api-sdks/docs/cards/list-cards
    *
    * @param params - Filter params
    * @returns Card API response
@@ -103,7 +103,7 @@ export class Cards {
   /**
    * Create a tokenized card or CVV
    *
-   * @link https://docs.malga.io/api#operation/create_token
+   * @link https://docs.malga.io/docs/api-sdks/docs/cards/tokenization-card
    *
    * @param payload - Token object
    * @param options - API options like `idempotencyKey`

@@ -19,7 +19,7 @@ export class Sellers {
   /**
    * Create a seller
    *
-   * @link https://docs.malga.io/api#operation/postSeller
+   * @link https://docs.malga.io/docs/api-sdks/docs/sellers/create-seller
    *
    * @param payload - Seller object
    * @param options - API options like `idempotencyKey`
@@ -91,7 +91,7 @@ export class Sellers {
   /**
    * Find seller details
    *
-   * @link https://docs.malga.io/api#operation/getSellerById
+   * @link https://docs.malga.io/docs/api-sdks/docs/sellers/find-seller
    *
    * @param id - Seller ID
    * @returns Seller API response
@@ -115,7 +115,7 @@ export class Sellers {
   /**
    * List the sellers
    *
-   * @link https://docs.malga.io/api#operation/getSellerPaginate
+   * @link https://docs.malga.io/docs/api-sdks/docs/sellers/list-sellers
    *
    * @param params - Filter params
    * @returns Seller API response
@@ -145,7 +145,7 @@ export class Sellers {
   /**
    * Update the seller
    *
-   * @link https://docs.malga.io/api#operation/updateSellerById
+   * @link https://docs.malga.io/docs/api-sdks/docs/sellers/update-seller
    *
    * @param id - Seller ID
    * @param payload - Updated seller object
@@ -217,7 +217,7 @@ export class Sellers {
   /**
    * Remove the seller
    *
-   * @link https://docs.malga.io/api#operation/deleteSellerById
+   * @link https://docs.malga.io/docs/api-sdks/docs/sellers/remove-seller
    *
    * @param id - Seller ID
    * @returns void

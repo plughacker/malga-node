@@ -13,7 +13,7 @@ export class Auth {
   /**
    * Create a publicKey
    *
-   * @link https://docs.malga.io/api#operation/create_auth_token
+   * @link https://docs.malga.io/docs/api-sdks/docs/auth/create-public-key
    *
    * @param payload - Send the `scope` that determines access to endpoints and the `expires` in seconds for the key expiration time
    * @param options - API options like `idempotencyKey`

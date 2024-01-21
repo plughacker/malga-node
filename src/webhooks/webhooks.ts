@@ -8,7 +8,7 @@ export class Webhooks {
   /**
    * Verify the event signature
    *
-   * @link https://docs.malga.io/docs/webhooks#como-verificar-a-assinatura-do-evento
+   * @link https://docs.malga.io/docs/api-sdks/docs/webhooks/verify-event-webhook
    *
    * @param params - Object with webhook data for signature verification
    * @returns {bool}

@@ -20,7 +20,7 @@ export class Customers {
   /**
    * Create a customer
    *
-   * @link https://docs.malga.io/api#operation/createCustomer
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/create-customer
    *
    * @param payload - Customer object
    * @param options - API options like `idempotencyKey`
@@ -104,7 +104,7 @@ export class Customers {
   /**
    * Find customer details
    *
-   * @link https://docs.malga.io/api#operation/getCustomer
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/find-customer
    *
    * @param id - Customer ID
    * @returns Customer API response
@@ -128,7 +128,7 @@ export class Customers {
   /**
    * List the customers
    *
-   * @link https://docs.malga.io/api#operation/ListCustomers
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/list-customers
    *
    * @param params - Filter params
    * @returns Customer API response
@@ -162,7 +162,7 @@ export class Customers {
   /**
    * Update the customer
    *
-   * @link https://docs.malga.io/api#operation/updateCustomer
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/update-customer
    *
    * @param id - Customer ID
    * @param payload - Updated customer object
@@ -193,7 +193,7 @@ export class Customers {
   /**
    * Remove the customer
    *
-   * @link https://docs.malga.io/api#operation/deleteCustomer
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/remove-customer
    *
    * @param id - Customer ID
    * @returns void
@@ -217,7 +217,7 @@ export class Customers {
   /**
    * List customer cards
    *
-   * @link https://docs.malga.io/api#operation/getCustomerCards
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/find-customer
    *
    * @param id - Customer ID
    * @returns void
@@ -241,7 +241,7 @@ export class Customers {
   /**
    * Link customer to card
    *
-   * @link https://docs.malga.io/api#operation/linkCard
+   * @link https://docs.malga.io/docs/api-sdks/docs/customers/link-card-customer
    *
    * @param id - Customer ID
    * @param payload - Card informations

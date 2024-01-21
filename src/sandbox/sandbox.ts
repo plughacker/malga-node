@@ -20,7 +20,7 @@ export class Sandbox {
   /**
    * Change the charge status in the sandbox
    *
-   * @link https://docs.malga.io/api#operation/changeStatusTransaction
+   * @link https://docs.malga.io/docs/api-sdks/docs/sandbox/change-charge-status
    *
    * @param id - Charge ID
    * @param payload - Object with expected status
@@ -66,7 +66,7 @@ export class Sandbox {
   /**
    * Change the antifraud status in the sandbox
    *
-   * @link https://docs.malga.io/api#operation/changeAntifraudStatusTransaction
+   * @link https://docs.malga.io/docs/api-sdks/docs/sandbox/change-antifraud-status
    *
    * @param id - Charge ID
    * @param payload - Object with expected status
@@ -112,7 +112,7 @@ export class Sandbox {
   /**
    * Card generator for use in a sandbox environment
    *
-   * @link https://docs.malga.io/docs/testing
+   * @link https://docs.malga.io/docs/api-sdks/docs/sandbox/generate-card
    *
    * @param params - Object with the card brand and the expected status
    * @returns card with `number`, `cvv` and `expirationDate`

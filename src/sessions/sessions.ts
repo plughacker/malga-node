@@ -17,7 +17,7 @@ export class Sessions {
   /**
    * Create a session
    *
-   * @link https://docs.malga.io/api#operation/createSession
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/create-session
    *
    * @param payload - Session object
    * @param options - API options like `idempotencyKey`
@@ -57,7 +57,7 @@ export class Sessions {
   /**
    * Find session details
    *
-   * @link https://docs.malga.io/api#operation/getSession
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/find-session
    *
    * @param id - Session ID
    * @returns Session API response
@@ -83,6 +83,8 @@ export class Sessions {
    *
    * @param params - Filter params
    * @returns Session API response
+   *
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/list-sessions
    *
    * @example
    * ```
@@ -117,7 +119,7 @@ export class Sessions {
   /**
    * Cancel the session
    *
-   * @link https://docs.malga.io/api#operation/cancelSession
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/cancel-session
    *
    * @param id - Session ID
    * @returns Session API response
@@ -141,7 +143,7 @@ export class Sessions {
   /**
    * Enable the session
    *
-   * @link https://docs.malga.io/api#operation/patchSession
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/enable-session
    *
    * @param id - Session ID
    * @returns Session API response
@@ -165,7 +167,7 @@ export class Sessions {
   /**
    * Disable the session
    *
-   * @link https://docs.malga.io/api#operation/patchSession
+   * @link https://docs.malga.io/docs/api-sdks/docs/sessions/disable-session
    *
    * @param id - Session ID
    * @returns Session API response
