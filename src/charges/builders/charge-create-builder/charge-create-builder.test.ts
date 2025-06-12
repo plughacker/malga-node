@@ -16,6 +16,7 @@ describe('ChargeCreateBuilder', () => {
       amount: 100,
       paymentMethod: {
         type: 'credit',
+        installments: 1,
         cardId: '7ccdc5e8-ef7a-4034-9f12-c385e7f53437',
         cardCvv: '170',
       },
