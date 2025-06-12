@@ -26,6 +26,7 @@ interface SellerOwner {
     state: string
     city: string
     district: string
+    referencePoint?: string
     complement?: string
   }
 }
@@ -36,22 +37,24 @@ interface SellerBusiness extends Omit<SellerOwner, 'birthdate'> {
   twitter?: string
   description: string
   openingDate: string
+  annualRevenue?: number
 }
 
 export interface Seller {
-  merchantId: string
+  merchantId?: string
+  minNegativeBalance?: number
   owner?: SellerOwner
   business?: SellerBusiness
   mcc: number
   bankAccount: {
     holderName: string
-    holderType?: 'individual' | 'company'
     holderDocument: string
     bank: string
     branchNumber: string
     branchCheckDigit?: string
     accountNumber: string
     accountCheckDigit: string
+    pixKey?: string
     type:
       | 'conta_corrente'
       | 'conta_poupanca'

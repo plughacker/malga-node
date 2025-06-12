@@ -26,6 +26,7 @@ export class Sellers {
    * @returns Seller API response
    *
    * @example
+   * Here is an example of how to create a seller to Split Provider
    * ```
    * import { Malga } from 'malga'
    *
@@ -67,6 +68,64 @@ export class Sellers {
    *     accountNumber: '4929',
    *     accountCheckDigit: '22',
    *     type: 'conta_corrente',
+   *   },
+   *   transferPolicy: {
+   *     transferDay: 5,
+   *     transferEnabled: true,
+   *     transferInterval: 'weekly',
+   *     automaticAnticipationEnabled: false,
+   *   },
+   *   metadata: [{
+   *     key: '768093',
+   *     value: 'Additional information',
+   *   }],
+   * })
+   * ```
+   *
+   * * @example
+   * Here is an example of how to create a seller to Split Agnostic and Split Subacquirer
+   * ```
+   * import { Malga } from 'malga'
+   *
+   * const malga = new Malga({
+   *   apiKey: 'API_KEY',
+   *   clientId: 'CLIENT_ID',
+   * })
+   *
+   * const seller = await malga.sellers.create({
+   *   mcc: 1,
+   *   minNegativeBalance: 3000,
+   *   owner: {
+   *     name: 'Homer Simpson',
+   *     email: 'homer@simpsons.com',
+   *     phoneNumber: '99999999999',
+   *     birthdate: '1989-12-17',
+   *     document: {
+   *       type: 'cpf',
+   *       number: '99999999999',
+   *       country: 'BR',
+   *     },
+   *     address: {
+   *      street: 'Evergreen Terrace',
+   *      streetNumber: '742',
+   *      zipCode: '62629',
+   *      country: 'US',
+   *      state: 'Louisiana',
+   *      city: 'Springfield',
+   *      district: 'Suburb',
+   *      complement: 'Residence',
+   *     },
+   *   },
+   *   bankAccount: {
+   *     holderName: 'Homer Simpson',
+   *     holderDocument: '99999999999',
+   *     bank: '077',
+   *     branchNumber: '492',
+   *     branchCheckDigit: '1',
+   *     accountNumber: '4929',
+   *     accountCheckDigit: '22',
+   *     type: 'conta_corrente',
+   *     pixKey: '0197622d-d268-742a-aaf6-6c720dcbb48f',
    *   },
    *   transferPolicy: {
    *     transferDay: 5,
